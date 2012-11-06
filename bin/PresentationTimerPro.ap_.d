@@ -38,6 +38,7 @@
 /home/chris/Source/phonegap/presentation-timer-pro/assets/www/img/cordova.png \
 /home/chris/Source/phonegap/presentation-timer-pro/assets/www/img/logo.png \
 /home/chris/Source/phonegap/presentation-timer-pro/assets/www/css/images \
+/home/chris/Source/phonegap/presentation-timer-pro/assets/www/css/mobile-640px.css \
 /home/chris/Source/phonegap/presentation-timer-pro/assets/www/css/index.css \
 /home/chris/Source/phonegap/presentation-timer-pro/assets/www/css/jquery.mobile.min.css \
 /home/chris/Source/phonegap/presentation-timer-pro/assets/www/css/images/icons-18-white.png \

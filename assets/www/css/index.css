@@ -9,6 +9,10 @@ body{
     padding: 0;
 }
 
+a.keep_awake{
+    visibility: hidden;
+}
+
 #page-timer div[data-role=content]{
     padding: 0;
 }
@@ -34,4 +38,3 @@ p#timer{
 .ui-mobile, .ui-mobile body {
     height: auto;
 }
-

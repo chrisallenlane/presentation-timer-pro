@@ -21,6 +21,7 @@
 /home/chris/Source/phonegap/presentation-timer-pro/bin/res/drawable-mdpi/ic_launcher.png \
 /home/chris/Source/phonegap/presentation-timer-pro/bin/res/drawable-mdpi/icon.png \
 /home/chris/Source/phonegap/presentation-timer-pro/assets/www \
+/home/chris/Source/phonegap/presentation-timer-pro/assets/www/config.xml \
 /home/chris/Source/phonegap/presentation-timer-pro/assets/www/bugs.md \
 /home/chris/Source/phonegap/presentation-timer-pro/assets/www/index.html \
 /home/chris/Source/phonegap/presentation-timer-pro/assets/www/js \
@@ -33,6 +34,7 @@
 /home/chris/Source/phonegap/presentation-timer-pro/assets/www/js/interval.js \
 /home/chris/Source/phonegap/presentation-timer-pro/assets/www/js/index.js \
 /home/chris/Source/phonegap/presentation-timer-pro/assets/www/js/presentation-timer.js \
+/home/chris/Source/phonegap/presentation-timer-pro/assets/www/js/option-manager.js \
 /home/chris/Source/phonegap/presentation-timer-pro/assets/www/js/jquery-1.8.2.min.js \
 /home/chris/Source/phonegap/presentation-timer-pro/assets/www/img/cordova.png \
 /home/chris/Source/phonegap/presentation-timer-pro/assets/www/img/logo.png \

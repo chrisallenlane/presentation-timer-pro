@@ -5,6 +5,7 @@
 /home/chris/Source/phonegap/presentation-timer-pro/bin/classes/com/chrisallenlane/presentationtimerpro/R$drawable.class \
 /home/chris/Source/phonegap/presentation-timer-pro/bin/classes/com/chrisallenlane/presentationtimerpro/R$string.class \
 /home/chris/Source/phonegap/presentation-timer-pro/bin/classes/com/chrisallenlane/presentationtimerpro/R$layout.class \
+/home/chris/Source/phonegap/presentation-timer-pro/bin/classes/com/chrisallenlane/presentationtimerpro/PresentationTimerPro$1.class \
 /home/chris/Source/phonegap/presentation-timer-pro/bin/classes/com/chrisallenlane/presentationtimerpro/R.class \
 /home/chris/Source/phonegap/presentation-timer-pro/bin/classes/com/chrisallenlane/presentationtimerpro/R$attr.class \
 /home/chris/Applications/android-sdk-linux/tools/support/annotations.jar \

@@ -20,9 +20,9 @@ presentation_timer = {
         this.intervals = [];
         // first multiplicand is in minutes
         // @todo: eventually make these configurable via GUI options screen
-        this.intervals[0] = { seconds: 5  * 60, action: function(){ presentation_timer.set_color({ primary: '#ff0' }) } }; //yellow
-        this.intervals[1] = { seconds: 8  * 60, action: function(){ presentation_timer.set_color({ primary: '#f00' }) } }; //red
-        this.intervals[2] = { seconds: 12 * 60, action: function(){ presentation_timer.over_time = true } };               //critical
+        this.intervals[0] = { seconds: 1  * 60, beep: true, vibrate: false, action: function(){ presentation_timer.set_color({ primary: '#ff0' }) } }; //yellow
+        this.intervals[1] = { seconds: 8  * 60, beep: true, vibrate: false, action: function(){ presentation_timer.set_color({ primary: '#f00' }) } }; //red
+        this.intervals[2] = { seconds: 12 * 60, beep: true, vibrate: false, action: function(){ presentation_timer.over_time = true } };               //critical
         this.next_interval_index = 0;
 
         // this can prevent a visual flicker
@@ -152,7 +152,11 @@ presentation_timer = {
             this.intervals.length > this.next_interval_index &&
             this.elapsed == this.intervals[this.next_interval_index].seconds
         ){
+            // if so, trigger the new interval, beep/vibrate (optionally), and
+            // set the next interval
             this.intervals[this.next_interval_index].action();
+            if(this.intervals[this.next_interval_index].beep){ navigator.notification.beep(1); }
+            if(this.intervals[this.next_interval_index].vibrate){ navigator.notification.vibrate(250) }
             this.next_interval_index++;
         }
 

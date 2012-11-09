@@ -20,7 +20,7 @@ presentation_timer = {
         this.intervals = [];
         // first multiplicand is in minutes
         // @todo: eventually make these configurable via GUI options screen
-        this.intervals[0] = { seconds: 1  * 60, beep: true, vibrate: false, action: function(){ presentation_timer.set_color({ primary: '#ff0' }) } }; //yellow
+        this.intervals[0] = { seconds: 5  * 60, beep: true, vibrate: false, action: function(){ presentation_timer.set_color({ primary: '#ff0' }) } }; //yellow
         this.intervals[1] = { seconds: 8  * 60, beep: true, vibrate: false, action: function(){ presentation_timer.set_color({ primary: '#f00' }) } }; //red
         this.intervals[2] = { seconds: 12 * 60, beep: true, vibrate: false, action: function(){ presentation_timer.over_time = true } };               //critical
         this.next_interval_index = 0;

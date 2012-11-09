@@ -60,12 +60,13 @@
             <div data-role='content'>	
                 <form id='app_settings'>
                     <h2>Presentation Length</h2>
-                    <input type='number' min='0' step='1' name='hours' value='0'> :
-                    <input type='number' min='0' max='59' step='1' name='minutes' value='10'> :
-                    <input type='number' min='0' max='59' step='1' name='seconds' value='00'>
+                    <input type='number' maxlength='2' min='0' step='1' name='hours' value='0'> :
+                    <input type='number' maxlength='2' min='0' max='59' step='1' name='minutes' value='10'> :
+                    <input type='number' maxlength='2' min='0' max='59' step='1' name='seconds' value='00'>
 
                     <h2>Clock Display</h2>
                     <span class='elapsed_remaining'> 
+                        <label for='elapsed_remaining' class='ui-hidden-accessible'>Elapsed/Remaining</label>
                         <select name='elapsed_remaining' id='elapsed_remaining' data-role='slider'>
                             <option value='off'>Elapsed</option>
                             <option value='on'>Remaining</option>
@@ -73,11 +74,20 @@
                     </span>
 
                     <h2>Breakpoints</h2>
-                    Options:
-                    presentation length
-                    colors and times
-                    leading zeroes?
-                    beep/vibrate?
+                    <!--
+                    <input type='color' name='breakpoint_1'> at 0:10:00 and 
+                    <select>
+                        <option>(Do nothing)</option>
+                        <option>Beep</option>
+                        <option>Vibrate</option>
+                        <option>Beep and Vibrate</option>
+                    </select>
+                    <br>
+                    <input type='color' name='breakpoint_2'> at 0:10:00 and beep<br>
+                    <input type='color' name='breakpoint_3'> at 0:10:00 and beep<br>
+                    <input type='color' name='breakpoint_4'> at 0:10:00 and beep<br>
+                    <input type='color' name='breakpoint_5'> at 0:10:00 and beep<br>
+                    -->
                 </form>
 
                 <a href='#page-menu' data-role='button' data-icon='back'>Back</a>

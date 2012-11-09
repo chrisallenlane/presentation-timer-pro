@@ -16,7 +16,15 @@ form#app_settings input[name=seconds]{
     font-size: x-large;
     font-weight: bold;
     line-height: 2;
+    text-align: center;
     width: 31%;
+}
+
+form#app_settings input[type=color]{
+    display: inline-block;
+    height: 50px;
+    vertical-align: middle;
+    width: 50px;
 }
 
 #page-timer div[data-role=content]{

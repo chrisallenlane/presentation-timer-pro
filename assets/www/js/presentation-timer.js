@@ -39,7 +39,7 @@ presentation_timer = {
             this.is_playing = true;
 
             // eliminate visual lag
-            $('#timer').html('00:00');
+            $('#timer').html('0:00');
             console.log('start');
         }
 
@@ -137,7 +137,8 @@ presentation_timer = {
 
         // minutes
         if((this.minutes > 0) && (this.minutes % 60 == 0)){ this.minutes = 0; ++this.hours; }
-        min = (this.minutes < 10) ? '0' + this.minutes : this.minutes ;
+        //min = (this.minutes < 10) ? '0' + this.minutes : this.minutes ;
+        min = this.minutes;
 
         // hours
         if(this.hours == 24){ this.hours = 0; this.minutes = 0; this.seconds = 0; }

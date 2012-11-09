@@ -10,9 +10,6 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
-        // @todo: remember to delete this in production
-        // @todo: find a better shim here and blog about it
-        // this.onDeviceReady();
     },
 
     // deviceready Event Handler
@@ -30,7 +27,6 @@ var app = {
         document.addEventListener('menubutton', nav.doMenuButton, false);
         $(window).bind('resize', function(){ presentation_timer.draw() });
         $('#timer').bind('tap', function(){ presentation_timer.play_pause() });
-        //navigator.notification.alert(device.phonegap, this.receivedEvent, 'My Rad Notification', 'My Button');
     },
 
     // Update DOM on a Received Event

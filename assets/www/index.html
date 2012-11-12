@@ -4,16 +4,18 @@
         <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
         <meta name='format-detection' content='telephone=no' />
         <meta name='viewport' content='user-scalable=no, initial-scale=1, maximum-scale=1,
-                    minimum-scale=1, width=device-width, height=device-height,
-                    target-densitydpi=device-dpi' />
+            minimum-scale=1, width=device-width, height=device-height,
+            target-densitydpi=device-dpi' />
         <title>Presentation Timer Pro</title>
         <link rel='stylesheet' href='css/index.css' />
+        <link rel='stylesheet' href='css/spectrum.css' />
         <link rel='stylesheet' href='css/jquery.mobile.min.css' />
         <script src='js/jquery-1.8.2.min.js'></script>
         <script src='js/jquery.mobile-1.2.0.min.js'></script>
         <script src='js/interval.js'></script>
         <script src='js/presentation-timer.js'></script>
-        <script src='js/option-manager.js'></script>
+        <script src='js/settings.js'></script>
+        <script src='js/spectrum.js'></script>
         <script src='js/nav.js'></script>
         <script src='js/index.js'></script>
         <script src='cordova-2.1.0.js'></script>
@@ -75,19 +77,62 @@
 
                     <h2>Breakpoints</h2>
                     <!--
-                    <input type='color' name='breakpoint_1'> at 0:10:00 and 
-                    <select>
-                        <option>(Do nothing)</option>
-                        <option>Beep</option>
-                        <option>Vibrate</option>
-                        <option>Beep and Vibrate</option>
-                    </select>
-                    <br>
-                    <input type='color' name='breakpoint_2'> at 0:10:00 and beep<br>
-                    <input type='color' name='breakpoint_3'> at 0:10:00 and beep<br>
-                    <input type='color' name='breakpoint_4'> at 0:10:00 and beep<br>
-                    <input type='color' name='breakpoint_5'> at 0:10:00 and beep<br>
+                    Using a table here is semantically less than ideal, but it's
+                    the only reliable way to get vertical-alignment to work.
                     -->
+                    <table>
+                        <!-- header -->
+                        <tr>
+                            <th>Color</th>
+                            <th>Time</th>
+                            <th>Action</th>
+                            <th></th>
+                        </tr>
+
+                        <!-- row -->
+                        <tr>
+                            <td> <input type='color' name='breakpoint_color[]'> </td>
+                            <td>
+                                <input class='small' type='number' maxlength='2' min='0' step='1' name='breakpoint_hours[]' value='0'> :
+                                <input class='small' type='number' maxlength='2' min='0' max='59' step='1' name='breakpoint_minutes[]' value='10'> :
+                                <input class='small' type='number' maxlength='2' min='0' max='59' step='1' name='breakpoint_seconds[]' value='00'>
+                            </td>
+                            <td>
+                                <select name='breakpoint_action[]' data-mini='true' data-inline='true'>
+                                    <option>(Do nothing)</option>
+                                    <option>Beep</option>
+                                    <option>Vibrate</option>
+                                    <option>Beep and Vibrate</option>
+                                </select>
+                            </td>
+                            <td> <button data-mini='true' data-icon='delete' data-iconpos='notext'>Delete</button> </td>
+                        </tr>
+
+
+                        <!-- row -->
+                        <tr>
+                            <td> <input type='color' name='breakpoint_color[]'> </td>
+                            <td>
+                                <input class='small' type='number' maxlength='2' min='0' step='1' name='breakpoint_hours[]' value='0'> :
+                                <input class='small' type='number' maxlength='2' min='0' max='59' step='1' name='breakpoint_minutes[]' value='10'> :
+                                <input class='small' type='number' maxlength='2' min='0' max='59' step='1' name='breakpoint_seconds[]' value='00'>
+                            </td>
+                            <td>
+                                <select name='breakpoint_action[]' data-mini='true' data-inline='true'>
+                                    <option>(Do nothing)</option>
+                                    <option>Beep</option>
+                                    <option>Vibrate</option>
+                                    <option>Beep and Vibrate</option>
+                                </select>
+                            </td>
+                            <td> <button data-mini='true' data-icon='delete' data-iconpos='notext'>Delete</button> </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan='4'> <button data-mini='true'>Add Breakpoint</button> </td>
+                        </tr>
+
+                    </table>
                 </form>
 
                 <a href='#page-menu' data-role='button' data-icon='back'>Back</a>

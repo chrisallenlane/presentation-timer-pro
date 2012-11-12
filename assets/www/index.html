@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
-        <meta name='format-detection' content='telephone=no' />
+        <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+        <meta name='format-detection' content='telephone=no'>
         <meta name='viewport' content='user-scalable=no, initial-scale=1, maximum-scale=1,
             minimum-scale=1, width=device-width, height=device-height,
-            target-densitydpi=device-dpi' />
+            target-densitydpi=device-dpi'>
         <title>Presentation Timer Pro</title>
-        <link rel='stylesheet' href='css/index.css' />
-        <link rel='stylesheet' href='css/spectrum.css' />
-        <link rel='stylesheet' href='css/jquery.mobile.min.css' />
+        <link rel='stylesheet' href='css/index.css'>
+        <link rel='stylesheet' href='css/spectrum.css'>
+        <link rel='stylesheet' href='css/jquery.mobile.min.css'>
         <script src='js/jquery-1.8.2.min.js'></script>
         <script src='js/jquery.mobile-1.2.0.min.js'></script>
         <script src='js/interval.js'></script>
@@ -71,8 +71,8 @@
                     <span class='elapsed_remaining'> 
                         <label for='elapsed_remaining' class='ui-hidden-accessible'>Elapsed/Remaining</label>
                         <select name='elapsed_remaining' id='elapsed_remaining' data-role='slider'>
-                            <option value='off'>Elapsed</option>
-                            <option value='on'>Remaining</option>
+                            <option value='elapsed'>Elapsed</option>
+                            <option value='remaining'>Remaining</option>
                         </select> 
                     </span>
 
@@ -100,7 +100,10 @@
                     </table>
                 </form>
 
-                <a href='#page-menu' data-role='button' data-icon='back'>Back</a>
+                <div class='ui-grid-a'>
+                    <div class='ui-block-a'><a href='#page-menu' data-role='button' data-icon='back'>Back</a></div>
+                    <div class='ui-block-b'><button onclick='javascript:return settings_form.save()' data-icon='check' data-theme='b'>Save</button></div>
+                </div>
             </div>
         </div>
 

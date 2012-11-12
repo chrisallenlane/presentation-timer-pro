@@ -31,24 +31,6 @@ form#app_settings input[type=color]{
     width: 50px;
 }
 
-table{
-    margin: 0 auto;
-    vertical-align: middle;
-}
-
-table td{
-    text-align: center;
-    width: 30%;
-}
-
-#page-timer div[data-role=content]{
-    padding: 0;
-}
-
-#page-menu{
-    background-color: black;
-}
-
 p#timer{
     background-color: black;
     display: none;
@@ -59,16 +41,30 @@ p#timer{
     text-shadow: none;
 }
 
+#page-menu{
+    background-color: black;
+}
+
+#page-timer div[data-role=content]{
+    padding: 0;
+}
+
 span.elapsed_remaining div.ui-slider-switch{
     line-height: 2;
     text-align: center;
     width: 99%;
 }
 
-.ui-content .ui-btn-inner{
-    //font-size: 24px !important;
+table{
+    margin: 0 auto;
+    vertical-align: middle;
 }
 
-.ui-mobile, .ui-mobile body {
-    height: auto;
+table td{
+    text-align: center;
+    width: 30%;
+}
+
+.ui-content .ui-btn-inner{
+    /* font-size: 24px !important; */
 }

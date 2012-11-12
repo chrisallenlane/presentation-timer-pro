@@ -29,6 +29,11 @@ var app = {
         $('#timer').bind('tap', function(){ presentation_timer.play_pause() });
 
         // polyfill the color picker
+        app.initColorPickers();
+    },
+
+    // initializes the color pickers
+    initColorPickers: function(){
         $('input[type=color]').spectrum({
             color: '#ff0',
             palette: [

@@ -15,6 +15,7 @@
         <script src='js/interval.js'></script>
         <script src='js/presentation-timer.js'></script>
         <script src='js/settings.js'></script>
+        <script src='js/settings-form.js'></script>
         <script src='js/spectrum.js'></script>
         <script src='js/nav.js'></script>
         <script src='js/index.js'></script>
@@ -80,7 +81,7 @@
                     Using a table here is semantically less than ideal, but it's
                     the only reliable way to get vertical-alignment to work.
                     -->
-                    <table>
+                    <table class='settings'>
                         <!-- header -->
                         <tr>
                             <th>Color</th>
@@ -89,49 +90,13 @@
                             <th></th>
                         </tr>
 
-                        <!-- row -->
-                        <tr>
-                            <td> <input type='color' name='breakpoint_color[]'> </td>
-                            <td>
-                                <input class='small' type='number' maxlength='2' min='0' step='1' name='breakpoint_hours[]' value='0'> :
-                                <input class='small' type='number' maxlength='2' min='0' max='59' step='1' name='breakpoint_minutes[]' value='10'> :
-                                <input class='small' type='number' maxlength='2' min='0' max='59' step='1' name='breakpoint_seconds[]' value='00'>
-                            </td>
-                            <td>
-                                <select name='breakpoint_action[]' data-mini='true' data-inline='true'>
-                                    <option>(Do nothing)</option>
-                                    <option>Beep</option>
-                                    <option>Vibrate</option>
-                                    <option>Beep and Vibrate</option>
-                                </select>
-                            </td>
-                            <td> <button data-mini='true' data-icon='delete' data-iconpos='notext'>Delete</button> </td>
-                        </tr>
-
-
-                        <!-- row -->
-                        <tr>
-                            <td> <input type='color' name='breakpoint_color[]'> </td>
-                            <td>
-                                <input class='small' type='number' maxlength='2' min='0' step='1' name='breakpoint_hours[]' value='0'> :
-                                <input class='small' type='number' maxlength='2' min='0' max='59' step='1' name='breakpoint_minutes[]' value='10'> :
-                                <input class='small' type='number' maxlength='2' min='0' max='59' step='1' name='breakpoint_seconds[]' value='00'>
-                            </td>
-                            <td>
-                                <select name='breakpoint_action[]' data-mini='true' data-inline='true'>
-                                    <option>(Do nothing)</option>
-                                    <option>Beep</option>
-                                    <option>Vibrate</option>
-                                    <option>Beep and Vibrate</option>
-                                </select>
-                            </td>
-                            <td> <button data-mini='true' data-icon='delete' data-iconpos='notext'>Delete</button> </td>
-                        </tr>
+                        <!-- rows go here -->
 
                         <tr>
-                            <td colspan='4'> <button data-mini='true'>Add Breakpoint</button> </td>
+                            <td colspan='4'>
+                                <button onclick='javascript:return settings_form.add_breakpoint()' data-mini='true'>Add Breakpoint</button>
+                            </td>
                         </tr>
-
                     </table>
                 </form>
 

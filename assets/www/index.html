@@ -62,19 +62,8 @@
 
             <div data-role='content'>	
                 <form id='app_settings'>
-                    <h2>Presentation Length</h2>
-                    <input type='number' maxlength='2' min='0' step='1' name='hours' value='0'> :
-                    <input type='number' maxlength='2' min='0' max='59' step='1' name='minutes' value='10'> :
-                    <input type='number' maxlength='2' min='0' max='59' step='1' name='seconds' value='00'>
-
-                    <h2>Clock Display</h2>
-                    <span class='elapsed_remaining'> 
-                        <label for='elapsed_remaining' class='ui-hidden-accessible'>Elapsed/Remaining</label>
-                        <select name='elapsed_remaining' id='elapsed_remaining' data-role='slider'>
-                            <option value='elapsed'>Elapsed</option>
-                            <option value='remaining'>Remaining</option>
-                        </select> 
-                    </span>
+                    
+                    <div class='settings_main'></div>
 
                     <h2>Breakpoints</h2>
                     <!--
@@ -90,7 +79,7 @@
                             <th></th>
                         </tr>
 
-                        <!-- rows go here -->
+                        <div class="breakpoints"></div>
 
                         <tr>
                             <td colspan='4'>

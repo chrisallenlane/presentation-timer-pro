@@ -1,4 +1,5 @@
-presentation_timer = {
+// this is the application's main class
+var presentation_timer = {
 
     // presentation_timer constructor
     initialize: function() {
@@ -6,6 +7,13 @@ presentation_timer = {
         presentation_timer.set_color({ primary: '#0f0', secondary: '#000' })
         $('#timer').html('Start');
         this.draw();
+
+        // initialize the save data
+        settings.init();
+        console.log(settings.save_data);
+
+        // draw the settings form
+        settings_form.draw();
 
         // initialize the time
         this.hours        = 0;

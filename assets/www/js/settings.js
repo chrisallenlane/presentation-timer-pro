@@ -1,30 +1,43 @@
-settings = {
-
-    options: {
-        presentation_length: {
-            hours   :  0,
-            minutes :  0,
-            seconds :  0,
-        }, 
-
-        clock_display: 'elapsed', 
-
-        breakpoints: {
-
-        }
+// this object manages settings data in persistent storage
+var settings = {
+    
+    // save_data is what gets saved into persistent storage
+    save_data: {
+        hours   :  '0',
+        minutes :  '10',
+        seconds :  '00',
+        elapsed : 36000,
+        elapsed_remaining : 'elapsed' ,
+        breakpoints: [
+            {hours: '0', minutes: '5', seconds: '00', color: '#ff0', action: 'none'},
+            {hours: '0', minutes: '8', seconds: '00', color: '#f00', action: 'none'},
+        ],
     },
 
+    // initialize the persistent storage
     init: function(){
+        // if a save file exists, load it
         if(localStorage.presentationtimerpro != null){
-
+            console.log('loading');
+            this.load();
+        }
+        // otherwise, save initialized defaults
+        else {
+            console.log('saving');
+            this.save(this.save_data);
         }
     }, 
 
-    save: function(){
-        console.log('saving options');
+    // saves settings_data to persistent storage
+    save: function(data){
+        // map the objects to persistent storage
+        this.save_data = data;
+        // write to disk
+        localStorage.presentationtimerpro = JSON.stringify(this.save_data);
     },
 
+    // loads settings_data from persistent storage
     load: function(){
-        console.log('loading options');
+        this.save_data = JSON.parse(localStorage.presentationtimerpro);
     },
 }

@@ -38,8 +38,8 @@
 /home/chris/Source/phonegap/presentation-timer-pro/assets/www/js/index.js \
 /home/chris/Source/phonegap/presentation-timer-pro/assets/www/js/presentation-timer.js \
 /home/chris/Source/phonegap/presentation-timer-pro/assets/www/js/jquery-1.8.2.min.js \
-/home/chris/Source/phonegap/presentation-timer-pro/assets/www/img/cordova.png \
-/home/chris/Source/phonegap/presentation-timer-pro/assets/www/img/logo.png \
+/home/chris/Source/phonegap/presentation-timer-pro/assets/www/img/logo.svg \
+/home/chris/Source/phonegap/presentation-timer-pro/assets/www/img/logo-huge.png \
 /home/chris/Source/phonegap/presentation-timer-pro/assets/www/css/images \
 /home/chris/Source/phonegap/presentation-timer-pro/assets/www/css/spectrum.css \
 /home/chris/Source/phonegap/presentation-timer-pro/assets/www/css/index.css \

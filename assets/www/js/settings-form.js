@@ -7,7 +7,6 @@ var settings_form = {
 
     // adds another breakpoint to the settings page
     add_breakpoint: function(data){
-        console.log(data);
         // initialize the placeholder variables
         hours       = minutes     = seconds    = '00';
         op_none_sel = op_beep_sel = op_vib_sel = op_both_sel = '';
@@ -29,7 +28,7 @@ var settings_form = {
         // assemble the HTML
         var html = " <!-- row --> " +
         "<tr class='breakpoint_number_" + this.breakpoint_number + "' data-theme='b'>" + 
-            "<td> <input data-theme='a' type='color' name='breakpoints[" + this.breakpoint_number + "].color'> </td>" + 
+            "<td> <input data-theme='a' type='color' name='breakpoints[" + this.breakpoint_number + "].color' value='" + color + "'> </td>" + 
             "<td>" + 
                 "<input data-theme='a' class='small' type='number' maxlength='2' step='1' min='0' name='breakpoints[" + this.breakpoint_number + "].hours' value='" + hours + "'> :" + 
                 "<input data-theme='a' class='small' type='number' maxlength='2' step='1' min='0' max='59' name='breakpoints[" + this.breakpoint_number + "].minutes' value='" + minutes + "'> :" + 
@@ -52,6 +51,7 @@ var settings_form = {
         $('table.settings').trigger('create');
 
         // initialize the new color picker
+        /*
         $('tr.breakpoint_number_' + this.breakpoint_number + ' input[type=color]').spectrum({
             color: color,
             palette: this.breakpoint_colors,
@@ -60,6 +60,7 @@ var settings_form = {
             showSelectionPalette: false,
             change: function(){ console.log('color changed');},
         });
+        */
 
         // increment the breakpoint number
         this.breakpoint_number++;
@@ -74,9 +75,11 @@ var settings_form = {
 
     // converts a H:MM:SS to seconds
     hmmss_to_seconds: function(obj){
-        var elapsed  = (obj.seconds);
-            elapsed += (obj.minutes * 60);
-            elapsed += (obj.hours   * 3600);
+        // we need parseInt here to cast to an Integer so we don't 
+        // concatenate these values as strings
+        var elapsed  = parseInt(obj.seconds);
+            elapsed += parseInt(obj.minutes * 60);
+            elapsed += parseInt(obj.hours   * 3600);
         return elapsed;
     },
 
@@ -97,14 +100,14 @@ var settings_form = {
         // so do that here
         var hmmss = {
             hours   : this.form_values.hours,
-            minutes : this.form_values.hours,
+            minutes : this.form_values.minutes,
             seconds : this.form_values.seconds,
         }
         this.form_values.elapsed = this.hmmss_to_seconds(hmmss);
 
         // iterative over the breakpoint data
         // @note: I was hoping there would be a much cleaner way to do this,
-        // but I'm not finding it. Oh well - @kludge on.
+        // but I'm not finding it. Oh well - @kludge onward.
         breaks = [];
         $(objects).each(function(index, obj){
             // extract the breakpoint number and field

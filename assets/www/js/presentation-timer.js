@@ -10,7 +10,6 @@ var presentation_timer = {
 
         // initialize the save data
         settings.init();
-        console.log(settings.save_data);
 
         // draw the settings form
         settings_form.draw();
@@ -24,14 +23,20 @@ var presentation_timer = {
         this.has_begun    = false;
         this.is_playing   = false;
 
-        // store intervals in an array
-        this.intervals = [];
-        // first multiplicand is in minutes
-        // @todo: eventually make these configurable via GUI options screen
-        this.intervals[0] = { seconds: 5  * 60, beep: true, vibrate: false, action: function(){ presentation_timer.set_color({ primary: '#ff0' }) } }; //yellow
-        this.intervals[1] = { seconds: 8  * 60, beep: true, vibrate: false, action: function(){ presentation_timer.set_color({ primary: '#f00' }) } }; //red
-        this.intervals[2] = { seconds: 12 * 60, beep: true, vibrate: false, action: function(){ presentation_timer.over_time = true } };               //critical
-        this.next_interval_index = 0;
+        // store breakpoints in an array
+        this.breakpoints = settings.save_data.breakpoints;
+        this.breakpoints.push({
+            color   : '#000000', // not used
+            hours   : settings.save_data.hours,
+            minutes : settings.save_data.minutes,
+            seconds : settings.save_data.seconds,
+            elapsed : settings.save_data.elapsed,
+            action  : 'final',
+        });
+        console.log(this.breakpoints);
+
+        // tracks progress through breakpoints
+        this.next_breakpoint_index = 0;
 
         // this can prevent a visual flicker
         this.paused_time  = '';
@@ -48,7 +53,6 @@ var presentation_timer = {
 
             // eliminate visual lag
             $('#timer').html('0:00');
-            console.log('start');
         }
 
         // if the timer has previously been started
@@ -57,7 +61,6 @@ var presentation_timer = {
             if(this.is_playing){
                 this.is_playing = false;
                 this.interval.pause();
-                console.log('pause');
                 
                 // record the paused time
                 this.paused_time = $('#timer').html();
@@ -71,15 +74,12 @@ var presentation_timer = {
                 // resume the clocks
                 this.is_playing = true;
                 this.interval.resume();
-                console.log('resume');
             }
         }
     },
 
     // displays the main pop-up menu
     display_menu: function(){
-        console.log('display_menu()');
-        //$('#page-menu').popup();
         window.location = '#page-menu';
     },
 
@@ -87,19 +87,18 @@ var presentation_timer = {
     prompt_reset: function(){
         if(confirm('Reset timer?')){
             // stop and destroy the timer
-            console.log('reset');
             this.interval.pause();
-            this.interval            = null;
+            this.interval              = null;
 
             // initialize the time
-            this.hours               = 0;
-            this.minutes             = 0;
-            this.seconds             = 0;
-            this.over_time           = false;
-            this.has_begun           = false;
-            this.is_playing          = false;
-            this.next_interval_index = 0;
-            this.paused_time         = '';
+            this.hours                 = 0;
+            this.minutes               = 0;
+            this.seconds               = 0;
+            this.over_time             = false;
+            this.has_begun             = false;
+            this.is_playing            = false;
+            this.next_breakpoint_index = 0;
+            this.paused_time           = '';
 
             // re-draw the timer
             presentation_timer.set_color({ primary: '#0f0', secondary: '#000' })
@@ -155,17 +154,46 @@ var presentation_timer = {
         if(this.hours > 0){ time_formatted = this.hours + ':' + min + ':' + sec; }
         else { time_formatted = min + ':' + sec; }
 
-        // determine if the current second should trigger a new interval
+        // determine if the current second should trigger a new breakpoint
         if(
-            this.intervals.length > this.next_interval_index &&
-            this.elapsed == this.intervals[this.next_interval_index].seconds
+            !this.over_time &&   // don't trigger breakpoints after the presentation ends
+            this.breakpoints.length > this.next_breakpoint_index &&
+            this.elapsed == this.breakpoints[this.next_breakpoint_index].elapsed
         ){
-            // if so, trigger the new interval, beep/vibrate (optionally), and
-            // set the next interval
-            this.intervals[this.next_interval_index].action();
-            if(this.intervals[this.next_interval_index].beep){ navigator.notification.beep(1); }
-            if(this.intervals[this.next_interval_index].vibrate){ navigator.notification.vibrate(250) }
-            this.next_interval_index++;
+            console.log('breakpoint');
+
+            // set a flag on the last breakpoint
+            if(this.breakpoints[this.next_breakpoint_index].action == 'final'){
+                this.over_time = true;
+            }
+
+            // handle normal breakpoints
+            else {
+                // set the new color
+                presentation_timer.set_color({
+                    primary: this.breakpoints[this.next_breakpoint_index].color,
+                    secondary: '#000'
+                })
+
+                // beep if appropriate
+                if(
+                    this.breakpoints[this.next_breakpoint_index].action == 'beep' ||
+                    this.breakpoints[this.next_breakpoint_index].action == 'both'
+                ){
+                     navigator.notification.beep(1); 
+                }
+
+                // vibrate if appropriate
+                if(
+                    this.breakpoints[this.next_breakpoint_index].action == 'vibrate' ||
+                    this.breakpoints[this.next_breakpoint_index].action == 'both'
+                ){
+                     navigator.notification.vibrate(250);
+                }
+
+                // track the next breakpoint
+                this.next_breakpoint_index++;
+            }
         }
 
         // this is tightly-coupled and inelegant, but it prevents screen-tearing

@@ -32,6 +32,7 @@ var settings = {
 
     // loads settings_data from persistent storage
     load: function(){
+        console.log(this.save_data);
         this.save_data = JSON.parse(localStorage.presentationtimerpro);
     },
 }

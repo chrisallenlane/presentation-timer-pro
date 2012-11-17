@@ -247,8 +247,19 @@ var settings_form = {
             alert(this.errors.join());
             return false;
         }
-        // if valid, save the new settings 
+        // notify the user if the timer is currently running
+        if(
+            presentation_timer.has_begun &&
+            !confirm("Changing settings will reset your timer. Continue?")
+        ){ return false; }
+
+        // save and re-load the settings (must load to take effect)
         settings.save(this.form_values);
+
+        // reset the timer
+        presentation_timer.reset();
+
+        // notify the user
         alert('Settings saved');
         return true;
     },

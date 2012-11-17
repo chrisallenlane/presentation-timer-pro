@@ -82,27 +82,47 @@ var presentation_timer = {
         window.location = '#page-menu';
     },
 
-    // prompts the user to reset the clock, and optionally does so
+    // prompts the user to reset the timer
     prompt_reset: function(){
-        if(confirm('Reset timer?')){
-            // stop and destroy the timer
+        if(confirm('Reset timer?')){ this.reset(); }
+    },
+
+    // resets the timer
+    reset: function(){
+        // stop and destroy the timer (if it has been initialized)
+        if(this.interval != null){
             this.interval.pause();
-            this.interval              = null;
-
-            // initialize the time
-            this.hours                 = 0;
-            this.minutes               = 0;
-            this.seconds               = 0;
-            this.over_time             = false;
-            this.has_begun             = false;
-            this.is_playing            = false;
-            this.next_breakpoint_index = 0;
-            this.paused_time           = '';
-
-            // re-draw the timer
-            presentation_timer.set_color({ primary: '#0f0', secondary: '#000' })
-            $('#timer').html('Start');
         }
+        this.interval              = null;
+
+        // initialize the time
+        this.hours                 = 0;
+        this.minutes               = 0;
+        this.seconds               = 0;
+        this.elapsed               = 0;
+        this.over_time             = false;
+        this.has_begun             = false;
+        this.is_playing            = false;
+        this.next_breakpoint_index = 0;
+        this.paused_time           = '';
+
+        // reload the settings in permanent storage
+        settings.init();
+
+        // reload the breakpoints (because form settings may have been changed)
+        this.breakpoints = settings.save_data.breakpoints;
+        this.breakpoints.push({
+            color   : '#000000', // not used
+            hours   : settings.save_data.hours,
+            minutes : settings.save_data.minutes,
+            seconds : settings.save_data.seconds,
+            elapsed : settings.save_data.elapsed,
+            action  : 'final',
+        });
+        
+        // re-draw the timer
+        presentation_timer.set_color({ primary: '#0f0', secondary: '#000' })
+        $('#timer').html('Start');
     },
 
     // re-draw the timer (invoked on init and when orientation changes
@@ -134,6 +154,13 @@ var presentation_timer = {
         ++this.seconds;
         ++this.elapsed;
 
+
+
+
+
+
+
+
         // initialize
         sec = min = 0;
 
@@ -152,6 +179,13 @@ var presentation_timer = {
         // format the time
         if(this.hours > 0){ time_formatted = this.hours + ':' + min + ':' + sec; }
         else { time_formatted = min + ':' + sec; }
+
+
+
+
+
+
+
 
         // determine if the current second should trigger a new breakpoint
         if(

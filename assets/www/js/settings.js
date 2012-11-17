@@ -9,8 +9,8 @@ var settings = {
         elapsed : 36000,
         elapsed_remaining : 'elapsed' ,
         breakpoints: [
-            {hours: '0', minutes: '5', seconds: '00', color: '#ff0', action: 'none'},
-            {hours: '0', minutes: '8', seconds: '00', color: '#f00', action: 'none'},
+            {hours: '0', minutes: '5', seconds: '00', color: '#ff0000', action: 'none'},
+            {hours: '0', minutes: '8', seconds: '00', color: '#f00000', action: 'none'},
         ],
     },
 

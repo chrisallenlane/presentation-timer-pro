@@ -33,7 +33,6 @@ var presentation_timer = {
             elapsed : settings.save_data.elapsed,
             action  : 'final',
         });
-        console.log(this.breakpoints);
 
         // tracks progress through breakpoints
         this.next_breakpoint_index = 0;
@@ -160,8 +159,6 @@ var presentation_timer = {
             this.breakpoints.length > this.next_breakpoint_index &&
             this.elapsed == this.breakpoints[this.next_breakpoint_index].elapsed
         ){
-            console.log('breakpoint');
-
             // set a flag on the last breakpoint
             if(this.breakpoints[this.next_breakpoint_index].action == 'final'){
                 this.over_time = true;

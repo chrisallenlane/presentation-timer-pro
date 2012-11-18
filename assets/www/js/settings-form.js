@@ -3,7 +3,15 @@ var settings_form = {
     errors: [],
     form_values: {},
     breakpoint_number: 0,
-    breakpoint_colors: [ '#ff0000', '#ffa500', '#ffff00', '#00ff00', '#0000ff', '#4b0082', '#ee82ee', ],
+    breakpoint_colors: [
+        /*
+        ['gray'  , 'silver' , 'white'  , 'blanchedalmond' , ] ,
+        ['red'   , 'orange' , 'yellow' , 'limegreen'      , ] ,
+        ['green' , 'blue'   , 'indigo' , 'violet'         , ] ,
+        */
+
+        ['ff0000'  , '00ff00' , '0000ff'] ,
+    ],
 
     // adds another breakpoint to the settings page
     add_breakpoint: function(data){
@@ -51,16 +59,17 @@ var settings_form = {
         $('table.settings').trigger('create');
 
         // initialize the new color picker
-        /*
         $('tr.breakpoint_number_' + this.breakpoint_number + ' input[type=color]').spectrum({
-            color: color,
             palette: this.breakpoint_colors,
-            showPaletteOnly: true,
+            //showPaletteOnly: true,
             showPalette: true,
-            showSelectionPalette: false,
-            change: function(){ console.log('color changed');},
+            //showSelectionPalette: false,
+            change: function(color) {
+                var col = color.toHexString(); 
+                console.log('color changed to ' + col);
+                $('input[type=color]').val(col);
+            }
         });
-        */
 
         // increment the breakpoint number
         this.breakpoint_number++;

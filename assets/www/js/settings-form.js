@@ -54,6 +54,15 @@ var settings_form = {
         $('table.settings tr:last').before(html);
         $('table.settings').trigger('create');
 
+        // initialize the color-picker polyfill
+        $('tr.breakpoint_number_' + this.breakpoint_number + ' input[type=color]').simpleColor({
+            boxHeight: '30px',
+            boxWidth: '100px',
+            cellWidth: 20,
+            cellHeight: 20,
+            border: '1px solid #333333',
+        });
+
         // increment the breakpoint number
         this.breakpoint_number++;
         return false;

@@ -68,3 +68,15 @@ table td{
 .ui-content .ui-btn-inner{
     /* font-size: 24px !important; */
 }
+
+/* SimpleColor style overrides */
+div.simpleColorContainer input[type=button],
+div.simpleColorContainer div.ui-btn{
+    display: none !important;
+}
+
+div.simpleColorContainer div.simpleColorDisplay{
+    height: 50px;
+    line-height: 50px;
+    margin: 0 auto;
+}

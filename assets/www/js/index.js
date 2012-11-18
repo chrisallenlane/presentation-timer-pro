@@ -35,6 +35,7 @@ var app = {
         document.addEventListener('menubutton', nav.doMenuButton, false);
         $(window).bind('resize', function(){ presentation_timer.draw() });
         $('#timer').bind('tap', function(){ presentation_timer.play_pause() });
+        //jscolor.init();
     },
 
     // Update DOM on a Received Event

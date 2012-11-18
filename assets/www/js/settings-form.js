@@ -9,8 +9,6 @@ var settings_form = {
         ['red'   , 'orange' , 'yellow' , 'limegreen'      , ] ,
         ['green' , 'blue'   , 'indigo' , 'violet'         , ] ,
         */
-
-        ['ff0000'  , '00ff00' , '0000ff'] ,
     ],
 
     // adds another breakpoint to the settings page
@@ -60,15 +58,7 @@ var settings_form = {
 
         // initialize the new color picker
         $('tr.breakpoint_number_' + this.breakpoint_number + ' input[type=color]').spectrum({
-            palette: this.breakpoint_colors,
-            //showPaletteOnly: true,
-            showPalette: true,
-            //showSelectionPalette: false,
-            change: function(color) {
-                var col = color.toHexString(); 
-                console.log('color changed to ' + col);
-                $('input[type=color]').val(col);
-            }
+
         });
 
         // increment the breakpoint number

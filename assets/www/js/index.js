@@ -9,8 +9,15 @@ var app = {
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
-        //document.addEventListener('deviceready', this.onDeviceReady, false);
-        app.onDeviceReady();
+        // detect whether the application is being run from within a PhoneGap
+        // application, or from within a Desktop browser environment
+        // @see: http://stackoverflow.com/a/11731277
+        if(document.location.protocol == "file:"){
+            document.addEventListener('deviceready', this.onDeviceReady, false);
+        } else {
+            console.log('Desktop environment detected.');
+            app.onDeviceReady();
+        }
     },
 
     // deviceready Event Handler

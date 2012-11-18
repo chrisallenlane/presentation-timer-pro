@@ -30,10 +30,10 @@
 /home/chris/Source/phonegap/presentation-timer-pro/assets/www/css \
 /home/chris/Source/phonegap/presentation-timer-pro/assets/www/res \
 /home/chris/Source/phonegap/presentation-timer-pro/assets/www/js/nav.js \
+/home/chris/Source/phonegap/presentation-timer-pro/assets/www/js/moment.min.js \
 /home/chris/Source/phonegap/presentation-timer-pro/assets/www/js/settings-form.js \
 /home/chris/Source/phonegap/presentation-timer-pro/assets/www/js/jquery.mobile-1.2.0.min.js \
 /home/chris/Source/phonegap/presentation-timer-pro/assets/www/js/interval.js \
-/home/chris/Source/phonegap/presentation-timer-pro/assets/www/js/spectrum.js \
 /home/chris/Source/phonegap/presentation-timer-pro/assets/www/js/settings.js \
 /home/chris/Source/phonegap/presentation-timer-pro/assets/www/js/index.js \
 /home/chris/Source/phonegap/presentation-timer-pro/assets/www/js/presentation-timer.js \

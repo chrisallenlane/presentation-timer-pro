@@ -28,8 +28,6 @@ var settings_form = {
             op_vib_sel  = (data.action == 'vibrate') ? 'selected' : '' ;
             op_both_sel = (data.action == 'both')    ? 'selected' : '' ;
         }
-
-        //var color_picker = this.create_color_picker(color, this.breakpoint_number);
         
         // assemble the HTML
         var html = " <!-- row --> " +
@@ -60,21 +58,6 @@ var settings_form = {
         this.breakpoint_number++;
         return false;
     },
-
-    // most of the existing color picker polyfills are either overkill or garbage,
-    // so implement a simple one internally
-    /*
-    create_color_picker: function(color, bp_number){
-        var html = "<select data-enhance='false' data-role='none' name='breakpoints[" + bp_number + "].color>";
-
-        $(this.breakpoint_colors).each(function(index, color){
-            html += "<option data-role='none' style='color:" + color + ";background-color:" + color + ";' value='" + color + "'>" + color + "</option>";
-        });
-
-        html += "</select>";
-        return html;
-    },
-    */
 
     // removes a breakpoint
     remove_breakpoint: function(obj){

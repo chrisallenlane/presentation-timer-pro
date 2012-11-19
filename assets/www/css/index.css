@@ -21,7 +21,8 @@ form#app_settings input[name=seconds]{
 
 form#app_settings input.small{
     display: inline;
-    width: 50px;
+    min-width: 30px;
+    width: auto;
 }
 
 form#app_settings input[type=color]{
@@ -79,4 +80,10 @@ div.simpleColorContainer div.simpleColorDisplay{
     height: 50px;
     line-height: 50px;
     margin: 0 auto;
+}
+
+div.simpleColorContainer div.simpleColorChooser{
+    background-color: black;
+    position: fixed;
+    z-index: 100;
 }

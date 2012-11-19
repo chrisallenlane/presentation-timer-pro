@@ -31,11 +31,15 @@ var app = {
         presentation_timer.initialize();
 
         // bind the application-level events
+        // tailor the Android system button functionality
         document.addEventListener('backbutton', nav.doBackButton, false);
         document.addEventListener('menubutton', nav.doMenuButton, false);
+
+        // resize the timer when the screen is resized
         $(window).bind('resize', function(){ presentation_timer.draw() });
+
+        // implement play/pause
         $('#timer').bind('tap', function(){ presentation_timer.play_pause() });
-        //jscolor.init();
     },
 
     // Update DOM on a Received Event

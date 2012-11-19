@@ -1,20 +1,16 @@
 // this object handles the client-side form behaviors
 var settings_form = {
+
     errors: [],
     form_values: {},
     breakpoint_number: 0,
-    breakpoint_colors: [
-        'gray'  , 'silver' , 'white'  , 'blanchedalmond' ,
-        'red'   , 'orange' , 'yellow' , 'limegreen'      ,
-        'green' , 'blue'   , 'indigo' , 'violet'         ,
-    ],
-
+    color_cell_size: 25,
+    
     // adds another breakpoint to the settings page
     add_breakpoint: function(data){
         // initialize the placeholder variables
         hours       = minutes     = seconds    = '00';
         op_none_sel = op_beep_sel = op_vib_sel = op_both_sel = '';
-        color       = this.breakpoint_colors[this.breakpoint_number];
         
         // map data to local variables, if data is set
         if(data != null){
@@ -34,16 +30,16 @@ var settings_form = {
         "<tr class='breakpoint_number_" + this.breakpoint_number + "' data-theme='b'>" + 
             "<td> <input data-theme='a' type='color' name='breakpoints[" + this.breakpoint_number + "].color' value='" + color + "'> </td>" + 
             "<td>" + 
-                "<input data-theme='a' class='small' type='number' maxlength='2' step='1' min='0' name='breakpoints[" + this.breakpoint_number + "].hours' value='" + hours + "'> :" + 
+                "<input data-theme='a' class='small' type='number' maxlength='2' step='1' min='0' max='99' name='breakpoints[" + this.breakpoint_number + "].hours' value='" + hours + "'> :" + 
                 "<input data-theme='a' class='small' type='number' maxlength='2' step='1' min='0' max='59' name='breakpoints[" + this.breakpoint_number + "].minutes' value='" + minutes + "'> :" + 
                 "<input data-theme='a' class='small' type='number' maxlength='2' step='1' min='0' max='59' name='breakpoints[" + this.breakpoint_number + "].seconds' value='" + seconds + "'>" + 
             "</td>" + 
             "<td>" + 
-                "<select data-theme='a' name='breakpoints[" + this.breakpoint_number + "].action' data-mini='true' data-inline='true'>" + 
-                    "<option value='none' "    + op_none_sel + ">(Do nothing)</option>" + 
+                "<select data-theme='a' name='breakpoints[" + this.breakpoint_number + "].action' data-inline='true'>" + 
+                    "<option value='none' "    + op_none_sel + ">None</option>" + 
                     "<option value='beep' "    + op_beep_sel + ">Beep</option>" + 
                     "<option value='vibrate' " + op_vib_sel  + ">Vibrate</option>" + 
-                    "<option value='both' "    + op_both_sel + ">Beep and Vibrate</option>" + 
+                    "<option value='both' "    + op_both_sel + ">Both</option>" + 
                 "</select>" + 
             "</td>" + 
             "<td> <button data-theme='a' onclick='javascript:return settings_form.remove_breakpoint(this)' " +
@@ -57,15 +53,43 @@ var settings_form = {
         // initialize the color-picker polyfill
         $('tr.breakpoint_number_' + this.breakpoint_number + ' input[type=color]').simpleColor({
             boxHeight: '30px',
-            boxWidth: '100px',
-            cellWidth: 20,
-            cellHeight: 20,
+            boxWidth: '50px',
+            cellWidth: this.color_cell_size,
+            cellHeight: this.color_cell_size,
             border: '1px solid #333333',
+        });
+
+        // center the color picker when launched
+        $('tr.breakpoint_number_' + this.breakpoint_number + ' div.simpleColorDisplay').bind('click', function(){
+            settings_form.center_color_chooser();
         });
 
         // increment the breakpoint number
         this.breakpoint_number++;
         return false;
+    },
+
+    // centers the color chooser
+    center_color_chooser: function(){
+        // @note: I have to anticipate the size of div.simpleColorChooser, because
+        // it's not likely to be drawn by now. This is an unfortunate (but tolerable)
+        // race-condition that's a result of the color chooser plugin not having
+        // a built-in callback hook. I'm sort of having to bolt one on here 
+        // myself.
+
+        // the +2 accounts for the borders
+        var width = (this.color_cell_size + 2) * 16;
+        var height = (this.color_cell_size + 2) * 14;
+
+        // capture the screen dimensions
+        var win_width = $(window).innerWidth();
+        var win_height = $(window).innerHeight();
+        var margin_top  = (win_height - height) / 2;
+        var margin_left = (win_width - width) / 2;
+
+        // position accordingly
+        $('div.simpleColorContainer div.simpleColorChooser').css('top', margin_top);
+        $('div.simpleColorContainer div.simpleColorChooser').css('left', margin_left);
     },
 
     // removes a breakpoint

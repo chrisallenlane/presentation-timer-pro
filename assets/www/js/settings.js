@@ -1,8 +1,11 @@
 // this object manages settings data in persistent storage
 var settings = {
-    
+
     // save_data is what gets saved into persistent storage
     save_data: {
+        // I don't need this version number currently, but I'm putting it in here
+        // to future-proof the application.
+        version :  1,
         hours   :  0,
         minutes :  10,
         seconds :  00,
@@ -32,7 +35,6 @@ var settings = {
 
     // loads settings_data from persistent storage
     load: function(){
-        console.log(this.save_data);
         this.save_data = JSON.parse(localStorage.presentationtimerpro);
     },
 }

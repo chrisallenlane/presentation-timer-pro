@@ -121,6 +121,8 @@ var presentation_timer = {
         // @todo: make sure two breakpoints don't share a congruent time
         // @todo: make sure breakpoints aren't set at zero elapsed
         // @todo: restructure breakpoints form to lay out better on smaller screens. Stack vertically.
+        // @todo: support elapsed/remaining
+        
         this.breakpoints = settings.save_data.breakpoints;
         this.breakpoints.push({
             color   : '#000000', // not used

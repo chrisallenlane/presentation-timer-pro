@@ -202,6 +202,8 @@ var presentation_timer = {
             // set a flag on the last breakpoint
             if(this.breakpoints[this.next_breakpoint_index].action == 'final'){
                 this.over_time = true;
+                // @todo @kludge: make this configurable
+                navigator.notification.beep(2); 
             }
 
             // handle normal breakpoints

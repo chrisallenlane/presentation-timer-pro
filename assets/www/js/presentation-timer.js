@@ -115,12 +115,9 @@ var presentation_timer = {
         // @todo: make it possible to set the start color
         // @todo: make it possible to specify action for presentation end
         // @todo: validate non-empty fields
-        // @todo: write a README
-        // @todo: publish the repo before Demo Night
         // @todo: see if settings are being reloaded when saved to device. Not sure if they are.
         // @todo: make sure two breakpoints don't share a congruent time
         // @todo: make sure breakpoints aren't set at zero elapsed
-        // @todo: restructure breakpoints form to lay out better on smaller screens. Stack vertically.
         // @todo: support elapsed/remaining
         
         this.breakpoints = settings.save_data.breakpoints;

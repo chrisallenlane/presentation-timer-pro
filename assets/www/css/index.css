@@ -19,9 +19,8 @@ form#app_settings input[name=seconds]{
     width: 31%;
 }
 
-form#app_settings input.small{
+form#app_settings input.inline{
     display: inline;
-    min-width: 30px;
     width: auto;
 }
 
@@ -58,10 +57,10 @@ span.elapsed_remaining div.ui-slider-switch{
 
 table{
     margin: 0 auto;
-    vertical-align: middle;
 }
 
 table td{
+    padding-bottom: 30px;
     text-align: center;
     width: 30%;
 }

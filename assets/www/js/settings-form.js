@@ -30,9 +30,9 @@ var settings_form = {
         "<tr class='breakpoint_number_" + this.breakpoint_number + "' data-theme='b'>" + 
             "<td> <input data-theme='a' type='color' name='breakpoints[" + this.breakpoint_number + "].color' value='" + color + "'> </td>" + 
             "<td>" + 
-                "<input data-theme='a' class='small' type='number' maxlength='2' step='1' min='0' max='99' name='breakpoints[" + this.breakpoint_number + "].hours' value='" + hours + "'> :" + 
-                "<input data-theme='a' class='small' type='number' maxlength='2' step='1' min='0' max='59' name='breakpoints[" + this.breakpoint_number + "].minutes' value='" + minutes + "'> :" + 
-                "<input data-theme='a' class='small' type='number' maxlength='2' step='1' min='0' max='59' name='breakpoints[" + this.breakpoint_number + "].seconds' value='" + seconds + "'>" + 
+                "<label>HR: <input data-theme='a' class='inline' type='number' maxlength='2' step='1' min='0' max='99' name='breakpoints[" + this.breakpoint_number + "].hours' value='" + hours + "'></label><br>" + 
+                "<label>MM: <input data-theme='a' class='inline' type='number' maxlength='2' step='1' min='0' max='59' name='breakpoints[" + this.breakpoint_number + "].minutes' value='" + minutes + "'></label><br>" + 
+                "<label>SS: <input data-theme='a' class='inline' type='number' maxlength='2' step='1' min='0' max='59' name='breakpoints[" + this.breakpoint_number + "].seconds' value='" + seconds + "'></label>" + 
             "</td>" + 
             "<td>" + 
                 "<select data-theme='a' name='breakpoints[" + this.breakpoint_number + "].action' data-inline='true'>" + 

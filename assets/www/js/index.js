@@ -40,6 +40,13 @@ var app = {
 
         // implement play/pause
         $('#timer').bind('tap', function(){ presentation_timer.play_pause() });
+
+        // disallow empty strings on number fields
+        $('input[type=number]').change(function(){
+            if($(this).val() == ''){
+                $(this).val(0);
+            }
+        });
     },
 
     // Update DOM on a Received Event

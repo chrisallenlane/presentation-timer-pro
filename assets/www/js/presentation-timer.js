@@ -113,10 +113,7 @@ var presentation_timer = {
         // OTHERWISE, THE FINAL EVENT WILL NEVER FIRE.
         // @todo: make it possible to set the start color
         // @todo: make it possible to specify action for presentation end
-        // @todo: validate non-empty fields
-        // @todo: see if settings are being reloaded when saved to device. Not sure if they are.
         // @todo: support elapsed/remaining
-        // @todo: have the Android back button hide the color picker when it is visible
         
         // reload the breakpoints (because form settings may have been changed)
         this.breakpoints = settings.save_data.breakpoints;

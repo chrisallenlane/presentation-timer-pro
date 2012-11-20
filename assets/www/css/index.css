@@ -84,5 +84,5 @@ div.simpleColorContainer div.simpleColorDisplay{
 div.simpleColorContainer div.simpleColorChooser{
     background-color: black;
     position: fixed;
-    z-index: 100;
+    z-index: 1000;
 }

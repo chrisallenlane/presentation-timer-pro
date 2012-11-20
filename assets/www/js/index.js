@@ -43,7 +43,7 @@ var app = {
 
         // disallow empty strings on number fields
         $('input[type=number]').change(function(){
-            if($(this).val() == ''){
+            if($.trim($(this).val()) == ''){
                 $(this).val(0);
             }
         });

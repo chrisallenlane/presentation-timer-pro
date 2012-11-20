@@ -1,6 +1,6 @@
 Presentation Timer Pro
 ======================
-Chris Lane
+Chris Lane  
 chris@chris-allen-lane.com  
 http://chris-allen-lane.com  
 http://twitter.com/#!/chrisallenlane  

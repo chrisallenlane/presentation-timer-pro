@@ -240,8 +240,13 @@ var settings_form = {
                 is_valid = false;
             }
 
-            // validate breakpoint data
+            // flag to track breakpoint errors
             var breakpoints_are_valid = true;
+
+            // track breakpoint elapsed times to make sure that each is unique
+            var breakpoint_times      = [];
+
+            // validate the breakpoints
             $(settings_form.form_values.breakpoints).each(function(index, object){
                 // hours 
                 if(!settings_form.validate.is_positive_integer(object.hours)) {
@@ -263,6 +268,17 @@ var settings_form = {
                     settings_form.errors.push("A breakpoint may not have a trigger time of 0:00:00.");
                     breakpoints_are_valid = false;
                 }
+                // verify uniqueness
+                if(breakpoint_times[object.elapsed] != null){
+                    settings_form.errors.push(
+                        "Some of your breakpoints are configured to occur at " +
+                        "the same moment. Each breakpoint must be configured to " +
+                        "fire at a unique moment."
+                    );
+                    breakpoints_are_valid = false;
+                }
+                // register the breakpoint time
+                breakpoint_times[object.elapsed] = true;
             });
 
             // @note: I'm not going to bother validating the <select> boxes,

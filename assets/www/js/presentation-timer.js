@@ -109,7 +109,6 @@ var presentation_timer = {
         // reload the settings in permanent storage
         settings.init();
 
-        // reload the breakpoints (because form settings may have been changed)
         // @todo @note @bug: THESE BREAKPOINTS NEED TO BE SORTED INTO CHRONOLOGICAL ORDER.
         // OTHERWISE, THE FINAL EVENT WILL NEVER FIRE.
         // @todo: make it possible to set the start color
@@ -117,9 +116,9 @@ var presentation_timer = {
         // @todo: validate non-empty fields
         // @todo: see if settings are being reloaded when saved to device. Not sure if they are.
         // @todo: make sure two breakpoints don't share a congruent time
-        // @todo: make sure breakpoints aren't set at zero elapsed
         // @todo: support elapsed/remaining
         
+        // reload the breakpoints (because form settings may have been changed)
         this.breakpoints = settings.save_data.breakpoints;
         this.breakpoints.push({
             color   : '#000000', // not used

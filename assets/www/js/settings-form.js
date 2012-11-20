@@ -193,7 +193,7 @@ var settings_form = {
 
     // validates methods
     validate: {
-        
+
         // returns false if val is not an integer
         is_int: function(val){
             // this is naive, but good enough for our purposes
@@ -209,9 +209,18 @@ var settings_form = {
         is_integer: function(val){
             return ((!this.is_int(val)) || val < 0 || val > 59) ? false : true ;
         },
+
+        // returns false if a breakpoint's elapsed time is <= 0
+        elapsed_is_greater_than_zero: function(val){
+            return (val <= 0) ? false : true ;
+        },
         
         // returns false if the form is invalid
         settings_form: function(){
+            
+            // clear out the previous error messages
+            settings_form.errors = [];
+        
             // track whether an error has occurred
             var is_valid = true;
 
@@ -247,6 +256,11 @@ var settings_form = {
                 // seconds 
                 if(!settings_form.validate.is_integer(object.seconds)) {
                     settings_form.errors.push("Breakpoint seconds must be a number between 0 and 59.\n");
+                    breakpoints_are_valid = false;
+                }
+                // elapsed > 0
+                if(!settings_form.validate.elapsed_is_greater_than_zero(object.elapsed)){
+                    settings_form.errors.push("A breakpoint may not have a trigger time of 0:00:00.");
                     breakpoints_are_valid = false;
                 }
             });

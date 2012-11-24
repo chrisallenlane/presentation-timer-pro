@@ -113,6 +113,8 @@ var presentation_timer = {
         // @todo: make it possible to specify action for presentation end
         // @todo: support elapsed/remaining
         // @todo: verify that the timer keeps good time by running it for a while
+        // @todo: ack for @todo, @bug, @kludge, etc
+        // @todo: write the project README
         
         // reload the breakpoints (because form settings may have been changed)
         this.breakpoints = settings.save_data.breakpoints;

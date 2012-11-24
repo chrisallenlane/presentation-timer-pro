@@ -157,6 +157,10 @@ var settings_form = {
             breaks[index].elapsed = settings_form.hmmss_to_seconds(hmmss);
         });
 
+        // lastly, sort the breakpoints by elapsed time
+        breaks.sort(function(a, b){ return a.elapsed - b.elapsed; });
+        console.log(breaks);
+
         this.form_values.breakpoints = breaks;
     },
 
@@ -215,6 +219,11 @@ var settings_form = {
             return (val <= 0) ? false : true ;
         },
         
+        // returns false if a breakpoint's elapsed time is >= presentation length
+        elapsed_is_less_than_presentation_length: function(val){
+            return (val >= settings_form.form_values.elapsed) ? false : true ;
+        },
+
         // returns false if the form is invalid
         settings_form: function(){
             
@@ -225,8 +234,6 @@ var settings_form = {
             var is_valid = true;
 
             // validate presentation time data
-            // @note: `this` won't point to the global settings_form object from
-            // inside a sub-object, so I'm using settings_form instead
             if(!settings_form.validate.is_positive_integer(settings_form.form_values.hours)){
                 settings_form.errors.push("Hours must be a positive number.\n");
                 is_valid = false;
@@ -266,6 +273,11 @@ var settings_form = {
                 // elapsed > 0
                 if(!settings_form.validate.elapsed_is_greater_than_zero(object.elapsed)){
                     settings_form.errors.push("A breakpoint may not have a trigger time of 0:00:00.");
+                    breakpoints_are_valid = false;
+                }
+                // elapsed < presentation length
+                if(!settings_form.validate.elapsed_is_less_than_presentation_length(object.elapsed)){
+                    settings_form.errors.push("All breakpoints be scheduled before the end of your presentation.");
                     breakpoints_are_valid = false;
                 }
                 // verify uniqueness

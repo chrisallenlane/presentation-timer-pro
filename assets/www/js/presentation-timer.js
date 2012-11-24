@@ -109,11 +109,10 @@ var presentation_timer = {
         // reload the settings in permanent storage
         settings.init();
 
-        // @todo @note @bug: THESE BREAKPOINTS NEED TO BE SORTED INTO CHRONOLOGICAL ORDER.
-        // OTHERWISE, THE FINAL EVENT WILL NEVER FIRE.
         // @todo: make it possible to set the start color
         // @todo: make it possible to specify action for presentation end
         // @todo: support elapsed/remaining
+        // @todo: verify that the timer keeps good time by running it for a while
         
         // reload the breakpoints (because form settings may have been changed)
         this.breakpoints = settings.save_data.breakpoints;

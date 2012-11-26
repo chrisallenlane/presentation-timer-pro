@@ -118,6 +118,7 @@ var presentation_timer = {
         // @todo: verify that the timer keeps good time by running it for a while
         // @todo: ack for @todo, @bug, @kludge, etc
         // @todo: write the project README
+        // @todo: DRY out the redundancy between this.initialize() and this.reset()
         
         // reload the breakpoints (because form settings may have been changed)
         this.breakpoints = settings.save_data.breakpoints;
@@ -267,10 +268,16 @@ var presentation_timer = {
     // blink when running critically long
     critical_blink: function(time_formatted){
         if($('#timer').html() === 'OVER'){
-            this.set_color({ primary: '#f00', secondary: '#000' });
+            this.set_color({
+                primary: settings.save_data.breakpoint_terminal_color, 
+                secondary: '#000'
+            });
             return time_formatted;
         } else {
-            this.set_color({ primary: '#000', secondary: '#f00' });
+            this.set_color({
+                primary: '#000',
+                secondary: settings.save_data.breakpoint_terminal_color, 
+            });
             return 'OVER';
         }
     }

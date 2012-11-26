@@ -9,7 +9,7 @@ var settings_form = {
     // adds another breakpoint to the settings page
     add_breakpoint: function(data){
         // initialize the placeholder variables
-        hours       = minutes     = seconds    = '00';
+        hours       = minutes     = seconds    = '0';
         op_none_sel = op_beep_sel = op_vib_sel = op_both_sel = '';
         
         // map data to local variables, if data is set
@@ -92,6 +92,27 @@ var settings_form = {
         $('div.simpleColorContainer div.simpleColorChooser').css('left', margin_left);
     },
 
+    // redraws the breakpoints
+    draw_breakpoints: function(){
+        // hide the settings table
+        $('table.settings').fadeOut(function(){
+            // un-draw the breakpoints
+            $('table.settings tr').slice(1, -1).remove();
+
+            // unset the final breakpoint that represents the end of the 
+            // presentation
+            breakpoints = settings.save_data.breakpoints;
+            breakpoints = breakpoints.slice(0, -1);
+
+            // re-draw the breakpoints
+            $(breakpoints).each(function(index, obj){
+                settings_form.add_breakpoint(obj);
+            });
+            // reveal the redrawn table
+            $('table.settings').fadeIn();
+        });
+    },
+
     // removes a breakpoint
     remove_breakpoint: function(obj){
         $(obj).parents('tr').fadeOut('slow', function(){ $(this).remove(); });
@@ -100,7 +121,7 @@ var settings_form = {
 
     // converts a H:MM:SS to seconds
     hmmss_to_seconds: function(obj){
-        // we need parseInt here to cast to an Integer so we don't 
+        // we need parseInt() here to cast to an Integer so we don't 
         // concatenate these values as strings
         var elapsed  = parseInt(obj.seconds);
             elapsed += parseInt(obj.minutes * 60);
@@ -130,9 +151,7 @@ var settings_form = {
         }
         this.form_values.elapsed = this.hmmss_to_seconds(hmmss);
 
-        // iterative over the breakpoint data
-        // @note: I was hoping there would be a much cleaner way to do this,
-        // but I'm not finding it. Oh well - @kludge onward.
+        // iterate over the breakpoint data
         breaks = [];
         $(objects).each(function(index, obj){
             // extract the breakpoint number and field
@@ -146,6 +165,9 @@ var settings_form = {
             // map values
             breaks[bp_num][field] = obj.value;
         });
+        
+        // remove empty elements from the breaks array
+        breaks = breaks.filter(function(o){ return (o == null) ? false : true ; });
 
         // now convert each breakpoint's h:mm:ss time to seconds
         $(breaks).each(function(index, obj){
@@ -159,8 +181,6 @@ var settings_form = {
 
         // lastly, sort the breakpoints by elapsed time
         breaks.sort(function(a, b){ return a.elapsed - b.elapsed; });
-        console.log(breaks);
-
         this.form_values.breakpoints = breaks;
     },
 
@@ -190,9 +210,7 @@ var settings_form = {
         $('div.settings_main').html(html);
 
         // draw the breakpoints (bottom half of form)
-        $(settings.save_data.breakpoints).each(function(index, obj){
-            settings_form.add_breakpoint(obj);
-        });
+        settings_form.draw_breakpoints();
     },
 
     // validates methods
@@ -322,6 +340,10 @@ var settings_form = {
 
         // save and re-load the settings (must load to take effect)
         settings.save(this.form_values);
+
+        // re-draw the breakpoints to guarantee that they appear within the UI
+        // in chronological order
+        settings_form.draw_breakpoints();
 
         // reset the timer
         presentation_timer.reset();

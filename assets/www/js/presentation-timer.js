@@ -237,7 +237,6 @@ var presentation_timer = {
                 this.breakpoints[this.next_breakpoint_index].action == 'vibrate' ||
                 this.breakpoints[this.next_breakpoint_index].action == 'both'
             ){
-                console.log('vibrate');
                 navigator.notification.vibrate(1000);
             }
 

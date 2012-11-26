@@ -258,7 +258,6 @@ var settings_form = {
         });
         // center the color picker when launched
         $('tr.breakpoint_initial div.simpleColorDisplay, tr.breakpoint_terminal div.simpleColorDisplay').bind('click', function(){
-            console.log('clicked');
             settings_form.center_color_chooser();
         });
 

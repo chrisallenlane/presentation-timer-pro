@@ -47,7 +47,7 @@ var settings_form = {
         "</tr>";
 
         // insert and render the breakpoint HTML
-        $('table.settings tr:last').before(html);
+        $('table.settings tr:last').prev().before(html);
         $('table.settings').trigger('create');
 
         // initialize the color-picker polyfill
@@ -97,7 +97,7 @@ var settings_form = {
         // hide the settings table
         $('table.settings').fadeOut(function(){
             // un-draw the breakpoints
-            $('table.settings tr').slice(1, -1).remove();
+            $('table.settings tr').slice(2, -2).remove();
 
             // unset the final breakpoint that represents the end of the 
             // presentation
@@ -135,12 +135,16 @@ var settings_form = {
         objects = $('form#app_settings').serializeArray();
 
         // capture and strip out the non-breakpoint data
-        this.form_values.hours             = objects[0].value;
-        this.form_values.minutes           = objects[1].value;
-        this.form_values.seconds           = objects[2].value;
-        this.form_values.elapsed_remaining = objects[3].value;
-        this.form_values.breakpoints       = [];
-        objects = objects.slice(4, objects.length);
+        this.form_values.hours                      = objects[0].value;
+        this.form_values.minutes                    = objects[1].value;
+        this.form_values.seconds                    = objects[2].value;
+        this.form_values.elapsed_remaining          = objects[3].value;
+        this.form_values.breakpoint_initial_color   = objects[4].value;
+        this.form_values.breakpoint_terminal_color  = objects[(objects.length - 2)].value;
+        this.form_values.breakpoint_terminal_action = objects[objects.length - 1].value;
+
+        this.form_values.breakpoints                = [];
+        objects = objects.slice(5, (objects.length - 2));
 
         // the H:MM:SS time ultimately needs to be converted into seconds,
         // so do that here
@@ -209,7 +213,56 @@ var settings_form = {
         // draw
         $('div.settings_main').html(html);
 
-        // draw the breakpoints (bottom half of form)
+        // draw the initial breakpoint
+        var color = settings.save_data.breakpoint_initial_color;
+        var html = " <!-- row --> " +
+        "<tr class='breakpoint_initial' data-theme='b'>" + 
+            "<td> <input data-theme='a' type='color' name='breakpoint_initial_color' value='" + color + "'> </td>" + 
+            "<td> Start </td>" + 
+            "<td> N/A </td>" + 
+        "</tr>";
+        $('table.settings tr:first').after(html);
+
+        // draw the terminal breakpoint
+        var color = settings.save_data.breakpoint_terminal_color;
+        terminal_action = settings.save_data.breakpoint_terminal_action;
+        op_none_sel      =  (terminal_action ==  'none')        ? 'selected' : '' ;
+        op_beep_sel      =  (terminal_action ==  'beep')        ? 'selected' : '' ;
+        op_trip_beep_sel =  (terminal_action ==  'triple-beep') ? 'selected' : '' ;
+        op_vib_sel       =  (terminal_action ==  'vibrate')     ? 'selected' : '' ;
+        op_both_sel      =  (terminal_action ==  'both')        ? 'selected' : '' ;
+
+        var html = " <!-- row --> " +
+        "<tr class='breakpoint_terminal' data-theme='b'>" + 
+            "<td> <input data-theme='a' type='color' name='breakpoint_terminal_color' value='" + color + "'> </td>" + 
+            "<td> End </td>" + 
+            "<td>" + 
+                "<select data-theme='a' name='breakpoints_terminal_action' data-inline='true'>" + 
+                    "<option value='none' "        + op_none_sel      + ">None</option>"    +
+                    "<option value='beep' "        + op_beep_sel      + ">Beep</option>"    +
+                    "<option value='triple-beep' " + op_trip_beep_sel + ">3x Beep</option>" +
+                    "<option value='vibrate' "     + op_vib_sel       + ">Vibrate</option>" +
+                    "<option value='both' "        + op_both_sel      + ">Both</option>"    +
+                "</select>" + 
+            "</td>" + 
+        "</tr>";
+        $('table.settings tr:last').before(html);
+
+        // apply the color-picker polyfill to the initial and terminal breakpoints
+        $('tr.breakpoint_initial input[type=color], tr.breakpoint_terminal input[type=color]').simpleColor({
+            boxHeight: '30px',
+            boxWidth: '50px',
+            cellWidth: this.color_cell_size,
+            cellHeight: this.color_cell_size,
+            border: '1px solid #333333',
+        });
+        // center the color picker when launched
+        $('tr.breakpoint_initial div.simpleColorDisplay, tr.breakpoint_terminal div.simpleColorDisplay').bind('click', function(){
+            console.log('clicked');
+            settings_form.center_color_chooser();
+        });
+
+        // draw the interleaving breakpoints
         settings_form.draw_breakpoints();
     },
 

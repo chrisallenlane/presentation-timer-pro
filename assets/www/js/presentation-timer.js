@@ -3,13 +3,17 @@ var presentation_timer = {
 
     // presentation_timer constructor
     initialize: function() {
-        // draw the timer initially
-        presentation_timer.set_color({ primary: '#0f0', secondary: '#000' })
-        $('#timer').html('Start');
-        this.draw();
 
         // initialize the save data
         settings.init();
+        
+        // draw the timer initially
+        presentation_timer.set_color({
+            primary: settings.save_data.breakpoint_initial_color,
+            secondary: '#000' }
+        );
+        $('#timer').html('Start');
+        this.draw();
 
         // draw the settings form
         settings_form.draw();
@@ -26,12 +30,13 @@ var presentation_timer = {
         // store breakpoints in an array
         this.breakpoints = settings.save_data.breakpoints;
         this.breakpoints.push({
-            color   : '#000000', // not used
+            color   : settings.save_data.breakpoint_terminal_color,
             hours   : settings.save_data.hours,
             minutes : settings.save_data.minutes,
             seconds : settings.save_data.seconds,
             elapsed : settings.save_data.elapsed,
-            action  : 'final',
+            action  : settings.save_data.breakpoint_terminal_action,
+            final   : true,
         });
 
         // tracks progress through breakpoints
@@ -109,8 +114,6 @@ var presentation_timer = {
         // reload the settings in permanent storage
         settings.init();
 
-        // @todo: make it possible to set the start color
-        // @todo: make it possible to specify action for presentation end
         // @todo: support elapsed/remaining
         // @todo: verify that the timer keeps good time by running it for a while
         // @todo: ack for @todo, @bug, @kludge, etc
@@ -119,16 +122,20 @@ var presentation_timer = {
         // reload the breakpoints (because form settings may have been changed)
         this.breakpoints = settings.save_data.breakpoints;
         this.breakpoints.push({
-            color   : '#000000', // not used
+            color   : settings.save_data.breakpoint_initial_color,
             hours   : settings.save_data.hours,
             minutes : settings.save_data.minutes,
             seconds : settings.save_data.seconds,
             elapsed : settings.save_data.elapsed,
-            action  : 'final',
+            action  : settings.save_data.elapsed,
+            final   : true,
         });
         
         // re-draw the timer
-        presentation_timer.set_color({ primary: '#0f0', secondary: '#000' })
+        presentation_timer.set_color({
+            primary: settings.save_data.breakpoint_initial_color,
+            secondary: '#000'
+        })
         $('#timer').html('Start');
     },
 
@@ -201,40 +208,41 @@ var presentation_timer = {
             this.elapsed == this.breakpoints[this.next_breakpoint_index].elapsed
         ){
             // set a flag on the last breakpoint
-            if(this.breakpoints[this.next_breakpoint_index].action == 'final'){
+            if(this.breakpoints[this.next_breakpoint_index].final === true){
                 this.over_time = true;
-                // @todo @kludge: make this configurable
-                navigator.notification.beep(2); 
             }
 
-            // handle normal breakpoints
-            else {
-                // set the new color
-                presentation_timer.set_color({
-                    primary: this.breakpoints[this.next_breakpoint_index].color,
-                    secondary: '#000'
-                })
+            // set the new color
+            presentation_timer.set_color({
+                primary: this.breakpoints[this.next_breakpoint_index].color,
+                secondary: '#000'
+            })
 
-                // beep if appropriate
-                if(
-                    this.breakpoints[this.next_breakpoint_index].action == 'beep' ||
-                    this.breakpoints[this.next_breakpoint_index].action == 'both'
-                ){
-                    navigator.notification.beep(1); 
-                }
-
-                // vibrate if appropriate
-                if(
-                    this.breakpoints[this.next_breakpoint_index].action == 'vibrate' ||
-                    this.breakpoints[this.next_breakpoint_index].action == 'both'
-                ){
-                    console.log('vibrate');
-                    navigator.notification.vibrate(1000);
-                }
-
-                // track the next breakpoint
-                this.next_breakpoint_index++;
+            // beep if appropriate
+            if(
+                this.breakpoints[this.next_breakpoint_index].action == 'beep' ||
+                this.breakpoints[this.next_breakpoint_index].action == 'both'
+            ){
+                navigator.notification.beep(1); 
             }
+
+            // triple beep if appropriate (final breakpoint only)
+            if(this.breakpoints[this.next_breakpoint_index].action == 'triple-beep'){
+                navigator.notification.beep(3); 
+            }
+
+            // vibrate if appropriate
+            if(
+                this.breakpoints[this.next_breakpoint_index].action == 'vibrate' ||
+                this.breakpoints[this.next_breakpoint_index].action == 'both'
+            ){
+                console.log('vibrate');
+                navigator.notification.vibrate(1000);
+            }
+
+            // track the next breakpoint
+            this.next_breakpoint_index++;
+            
         }
 
         // this is tightly-coupled and inelegant, but it prevents screen-tearing

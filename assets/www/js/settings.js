@@ -15,6 +15,9 @@ var settings = {
             {hours: 0, minutes: 5, seconds: 00, elapsed: 300, color: '#ffff00', action: 'none'},
             {hours: 0, minutes: 8, seconds: 00, elapsed: 480, color: '#ff0000', action: 'none'},
         ],
+        breakpoint_initial_color: '#00FF00',
+        breakpoint_terminal_action: 'triple-beep',
+        breakpoint_terminal_color: '#FF0000',
     },
 
     // initialize the persistent storage

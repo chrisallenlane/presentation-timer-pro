@@ -30,6 +30,10 @@ var app = {
         // initialize the timer object
         presentation_timer.initialize();
 
+        // draw the settings form
+        presentation_timer.draw();
+        settings_form.draw();
+
         // bind the application-level events
         // tailor the Android system button functionality
         document.addEventListener('backbutton', nav.doBackButton, false);

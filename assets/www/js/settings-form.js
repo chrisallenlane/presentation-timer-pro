@@ -398,7 +398,7 @@ var settings_form = {
         settings_form.draw_breakpoints();
 
         // reset the timer
-        presentation_timer.reset();
+        presentation_timer.initialize();
 
         // notify the user
         alert('Settings saved');

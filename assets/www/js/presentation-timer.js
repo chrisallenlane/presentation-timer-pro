@@ -1,31 +1,34 @@
 // this is the application's main class
+// @todo: support elapsed/remaining
+// @todo: verify that the timer keeps good time by running it for a while
+// @todo: ack for @todo, @bug, @kludge, etc
+// @todo: write the project README
+// @todo: DRY out the redundancy between this.initialize() and this.reset()
+        
 var presentation_timer = {
 
     // presentation_timer constructor
     initialize: function() {
 
+        // stop and destroy the timer (if it has been initialized)
+        if(this.interval != null){
+            this.interval.pause();
+            this.interval              = null;
+        }
+
         // initialize the save data
         settings.init();
-        
-        // draw the timer initially
-        presentation_timer.set_color({
-            primary: settings.save_data.breakpoint_initial_color,
-            secondary: '#000' }
-        );
-        $('#timer').html('Start');
-        this.draw();
-
-        // draw the settings form
-        settings_form.draw();
 
         // initialize the time
-        this.hours        = 0;
-        this.minutes      = 0;
-        this.seconds      = 0;
-        this.elapsed      = 0; // seconds that don't wrap to minutes
-        this.over_time    = false;
-        this.has_begun    = false;
-        this.is_playing   = false;
+        this.hours                 = 0;
+        this.minutes               = 0;
+        this.seconds               = 0;
+        this.elapsed               = 0;
+        this.over_time             = false;
+        this.has_begun             = false;
+        this.is_playing            = false;
+        this.next_breakpoint_index = 0;
+        this.paused_time           = '';
 
         // store breakpoints in an array
         this.breakpoints = settings.save_data.breakpoints;
@@ -39,11 +42,12 @@ var presentation_timer = {
             final   : true,
         });
 
-        // tracks progress through breakpoints
-        this.next_breakpoint_index = 0;
-
-        // this can prevent a visual flicker
-        this.paused_time  = '';
+        // draw the timer initially
+        presentation_timer.set_color({
+            primary: settings.save_data.breakpoint_initial_color,
+            secondary: '#000' }
+        );
+        $('#timer').html('Start');
     },
 
     // plays and pauses the timer
@@ -89,55 +93,7 @@ var presentation_timer = {
 
     // prompts the user to reset the timer
     prompt_reset: function(){
-        if(confirm('Reset timer?')){ this.reset(); }
-    },
-
-    // resets the timer
-    reset: function(){
-        // stop and destroy the timer (if it has been initialized)
-        if(this.interval != null){
-            this.interval.pause();
-        }
-        this.interval              = null;
-
-        // initialize the time
-        this.hours                 = 0;
-        this.minutes               = 0;
-        this.seconds               = 0;
-        this.elapsed               = 0;
-        this.over_time             = false;
-        this.has_begun             = false;
-        this.is_playing            = false;
-        this.next_breakpoint_index = 0;
-        this.paused_time           = '';
-
-        // reload the settings in permanent storage
-        settings.init();
-
-        // @todo: support elapsed/remaining
-        // @todo: verify that the timer keeps good time by running it for a while
-        // @todo: ack for @todo, @bug, @kludge, etc
-        // @todo: write the project README
-        // @todo: DRY out the redundancy between this.initialize() and this.reset()
-        
-        // reload the breakpoints (because form settings may have been changed)
-        this.breakpoints = settings.save_data.breakpoints;
-        this.breakpoints.push({
-            color   : settings.save_data.breakpoint_initial_color,
-            hours   : settings.save_data.hours,
-            minutes : settings.save_data.minutes,
-            seconds : settings.save_data.seconds,
-            elapsed : settings.save_data.elapsed,
-            action  : settings.save_data.elapsed,
-            final   : true,
-        });
-        
-        // re-draw the timer
-        presentation_timer.set_color({
-            primary: settings.save_data.breakpoint_initial_color,
-            secondary: '#000'
-        })
-        $('#timer').html('Start');
+        if(confirm('Reset timer?')){ this.initialize(); }
     },
 
     // re-draw the timer (invoked on init and when orientation changes

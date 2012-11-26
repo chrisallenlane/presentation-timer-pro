@@ -45,7 +45,7 @@
             </div>
 
             <div data-role='content'>	
-                <a href='javascript:presentation_timer.prompt_reset()' data-role='button' data-icon='delete'>Reset Timer</a>
+                <button id='reset_timer' data-icon='delete'>Reset Timer</button>
                 <a href='#page-settings' data-role='button' data-icon='gear'>Settings</a>
                 <a href='#page-timer' data-role='button' data-icon='back'>Back</a>
             </div>
@@ -80,7 +80,7 @@
 
                         <tr>
                             <td colspan='4'>
-                                <button onclick='javascript:return settings_form.add_breakpoint()' data-theme='a'>Add Breakpoint</button>
+                                <button id='add_breakpoint' data-theme='a'>Add Breakpoint</button>
                             </td>
                         </tr>
                     </table>
@@ -88,7 +88,7 @@
 
                 <div class='ui-grid-a'>
                     <div class='ui-block-a'><a href='#page-menu' data-role='button' data-icon='back'>Back</a></div>
-                    <div class='ui-block-b'><button onclick='javascript:return settings_form.save()' data-icon='check' data-theme='b'>Save</button></div>
+                    <div class='ui-block-b'><button id='save_settings' data-icon='check' data-theme='b'>Save</button></div>
                 </div>
             </div>
         </div>

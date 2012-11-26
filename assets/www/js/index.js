@@ -41,6 +41,17 @@ var app = {
         // implement play/pause
         $('#timer').bind('tap', function(){ presentation_timer.play_pause() });
 
+        // bind button events
+        $('button#reset_timer').click(function(){
+            presentation_timer.prompt_reset();
+        });
+        $('button#add_breakpoint').click(function(){
+            return settings_form.add_breakpoint();
+        });
+        $('button#save_settings').click(function(){
+            return settings_form.save();
+        });
+
         // disallow empty strings on number fields
         $('input[type=number]').change(function(){
             if($.trim($(this).val()) == ''){

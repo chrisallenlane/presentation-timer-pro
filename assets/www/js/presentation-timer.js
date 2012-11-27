@@ -128,7 +128,7 @@ var presentation_timer = {
 
         // don't display negative time
         var sign = '';
-        if(secs <= 0){
+        if(secs < 0){
             //return {hours: 0, minutes: 0, seconds: '00'};
             secs    *= -1;
             var sign = '-';

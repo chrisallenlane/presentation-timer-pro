@@ -29,7 +29,6 @@
 /home/chris/Source/phonegap/presentation-timer-pro/assets/www/css \
 /home/chris/Source/phonegap/presentation-timer-pro/assets/www/js/nav.js \
 /home/chris/Source/phonegap/presentation-timer-pro/assets/www/js/jquery.simple-color.min.js \
-/home/chris/Source/phonegap/presentation-timer-pro/assets/www/js/moment.min.js \
 /home/chris/Source/phonegap/presentation-timer-pro/assets/www/js/settings-form.js \
 /home/chris/Source/phonegap/presentation-timer-pro/assets/www/js/jquery.mobile-1.2.0.min.js \
 /home/chris/Source/phonegap/presentation-timer-pro/assets/www/js/interval.js \

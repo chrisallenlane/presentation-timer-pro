@@ -1,8 +1,4 @@
 // this is the application's main class
-// @todo: verify that the timer keeps good time by running it for a while
-// @todo: write the project README
-// @todo: choose a license
-        
 var presentation_timer = {
 
     // presentation_timer constructor

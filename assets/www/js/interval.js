@@ -1,4 +1,4 @@
-// @see: http://stackoverflow.com/questions/3969475/javascript-pause-settimeout
+// this constructs the timers that drive the application's clocks
 function Interval(callback, delay){
     var timerId;
 

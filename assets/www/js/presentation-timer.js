@@ -1,7 +1,7 @@
 // this is the application's main class
 // @todo: verify that the timer keeps good time by running it for a while
-// @todo: ack for @todo, @bug, @kludge, etc
 // @todo: write the project README
+// @todo: choose a license
         
 var presentation_timer = {
 
@@ -11,7 +11,7 @@ var presentation_timer = {
         // stop and destroy the timer (if it has been initialized)
         if(this.interval != null){
             this.interval.pause();
-            this.interval              = null;
+            this.interval = null;
         }
 
         // initialize the save data
@@ -61,9 +61,8 @@ var presentation_timer = {
             var last_elapsed   =  this.breakpoints[this.breakpoints.length - 1].elapsed;
             var seconds        =  (settings.save_data.elapsed_remaining ==  'elapsed') ? this.elapsed : (last_elapsed - this.elapsed) ;
 
-            // buffer the output
+            // buffer and display the output
             var time_formatted = this.format_time(seconds);
-
             $('#timer').html(time_formatted);
         }
 
@@ -125,11 +124,9 @@ var presentation_timer = {
 
     // formats elapsed seconds as h:mm:ss
     format_time: function(secs){
-
         // don't display negative time
         var sign = '';
         if(secs < 0){
-            //return {hours: 0, minutes: 0, seconds: '00'};
             secs    *= -1;
             var sign = '-';
         }

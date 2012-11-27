@@ -1,10 +1,10 @@
 // this object handles the client-side form behaviors
 var settings_form = {
 
-    errors: [],
-    form_values: {},
-    breakpoint_number: 0,
-    color_cell_size: 25,
+    breakpoint_number : 0,
+    color_cell_size   : 25,
+    errors            : [],
+    form_values       : {},
     
     // adds another breakpoint to the settings page
     add_breakpoint: function(data){
@@ -267,7 +267,6 @@ var settings_form = {
 
     // validates methods
     validate: {
-
         // returns false if val is not an integer
         is_int: function(val){
             // this is naive, but good enough for our purposes
@@ -296,7 +295,6 @@ var settings_form = {
 
         // returns false if the form is invalid
         settings_form: function(){
-            
             // clear out the previous error messages
             settings_form.errors = [];
         
@@ -364,9 +362,8 @@ var settings_form = {
             });
 
             // @note: I'm not going to bother validating the <select> boxes,
-            // because you'd truly have to TRY to inject non-standard data 
-            // into them, and if you really want to sabotage your own app so 
-            // badly, who am I to stop you?
+            // because you'd truly have to TRY to inject bad data in there
+            // in order to cause problems.
 
             // return true if valid, false otherwise
             return (is_valid && breakpoints_are_valid);

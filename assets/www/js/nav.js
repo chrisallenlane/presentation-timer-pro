@@ -1,5 +1,6 @@
-// this is a lightweight class to manage the nav controls
+// this is a lightweight object to manage the nav controls
 nav = {
+
     // handle the Android back button
     doBackButton: function(){
         // from timer: exit application
@@ -31,4 +32,5 @@ nav = {
     doMenuButton: function(){
         window.location = '#page-menu';
     }
+
 }

@@ -1,9 +1,7 @@
 // this is the application's main class
-// @todo: support elapsed/remaining
 // @todo: verify that the timer keeps good time by running it for a while
 // @todo: ack for @todo, @bug, @kludge, etc
 // @todo: write the project README
-// @todo: DRY out the redundancy between this.initialize() and this.reset()
         
 var presentation_timer = {
 
@@ -59,8 +57,14 @@ var presentation_timer = {
             this.has_begun  = true;
             this.is_playing = true;
 
-            // eliminate visual lag
-            $('#timer').html('0:00');
+            // show either elapsed or remaining time, per the settings
+            var last_elapsed   =  this.breakpoints[this.breakpoints.length - 1].elapsed;
+            var seconds        =  (settings.save_data.elapsed_remaining ==  'elapsed') ? this.elapsed : (last_elapsed - this.elapsed) ;
+
+            // buffer the output
+            var time_formatted = this.format_time(seconds);
+
+            $('#timer').html(time_formatted);
         }
 
         // if the timer has previously been started
@@ -119,44 +123,49 @@ var presentation_timer = {
         $('#timer').css('display'         , 'block');
     },
 
+    // formats elapsed seconds as h:mm:ss
+    format_time: function(secs){
+
+        // don't display negative time
+        var sign = '';
+        if(secs <= 0){
+            //return {hours: 0, minutes: 0, seconds: '00'};
+            secs    *= -1;
+            var sign = '-';
+        }
+
+        // Thanks for taking some of the thinking out of this:
+        // http://stackoverflow.com/a/1322798/461108
+        this.hours   = Math.floor(secs / 3600);
+        secs        %= 3600;
+        this.minutes = Math.floor(secs / 60);
+        s            = Math.floor(secs % 60);
+        // format :s as :ss if s < 10
+        s = (s < 10) ? '0' + s : s ;
+        this.seconds = s;
+
+        // prettify
+        if(this.hours > 0){
+            var time_formatted = sign + this.hours + ':' + this.minutes + ':' + this.seconds;
+        } else {
+            var time_formatted = sign + this.minutes + ':' + this.seconds;
+        }
+
+        // return the formatted time string
+        return time_formatted;
+    },
+
     // operate the clock
     tick: function(){
         // tick a second
-        ++this.seconds;
         ++this.elapsed;
 
+        // show either elapsed or remaining time, per the settings
+        var last_elapsed   =  this.breakpoints[this.breakpoints.length - 1].elapsed;
+        var seconds        =  (settings.save_data.elapsed_remaining ==  'elapsed') ? this.elapsed : (last_elapsed - this.elapsed) ;
 
-
-
-
-
-
-
-        // initialize
-        sec = min = 0;
-
-        // seconds
-        if(this.seconds % 60 == 0){ this.seconds = 0; ++this.minutes; }
-        sec = (this.seconds < 10) ? '0' + this.seconds : this.seconds ;
-
-        // minutes
-        if((this.minutes > 0) && (this.minutes % 60 == 0)){ this.minutes = 0; ++this.hours; }
-        //min = (this.minutes < 10) ? '0' + this.minutes : this.minutes ;
-        min = this.minutes;
-
-        // hours
-        if(this.hours == 24){ this.hours = 0; this.minutes = 0; this.seconds = 0; }
-
-        // format the time
-        if(this.hours > 0){ time_formatted = this.hours + ':' + min + ':' + sec; }
-        else { time_formatted = min + ':' + sec; }
-
-
-
-
-
-
-
+        // buffer the output
+        var time_formatted = this.format_time(seconds);
 
         // determine if the current second should trigger a new breakpoint
         if(

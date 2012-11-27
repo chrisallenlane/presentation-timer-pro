@@ -131,9 +131,16 @@ var presentation_timer = {
         // http://stackoverflow.com/a/1322798/461108
         this.hours   = Math.floor(secs / 3600);
         secs        %= 3600;
-        this.minutes = Math.floor(secs / 60);
-        s            = Math.floor(secs % 60);
+
+        // if hours < 0, don't pad the minutes with a leading zero. Otherwise, do.
+        m = Math.floor(secs / 60);
+        if(this.hours >= 1){
+            m = (m < 10) ? '0' + m : m ;
+        }
+        this.minutes = m;
+
         // format :s as :ss if s < 10
+        s = Math.floor(secs % 60);
         s = (s < 10) ? '0' + s : s ;
         this.seconds = s;
 

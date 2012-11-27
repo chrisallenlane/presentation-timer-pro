@@ -15,12 +15,14 @@ form#app_settings input[name=seconds]{
     display: inline;
     font-weight: bold;
     line-height: 2;
+    margin-right: 0;
     text-align: center;
     width: 31%;
 }
 
 form#app_settings input.inline{
     display: inline;
+    max-width: 50px;
     width: auto;
 }
 
@@ -63,10 +65,6 @@ table td{
     padding-bottom: 30px;
     text-align: center;
     width: 30%;
-}
-
-.ui-content .ui-btn-inner{
-    /* font-size: 24px !important; */
 }
 
 /* SimpleColor style overrides */

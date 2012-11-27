@@ -197,8 +197,8 @@ var settings_form = {
         // draw the top half of the form
         var html = "" +
             "<h2>Presentation Length</h2>" + 
-            "<input type='number' maxlength='2' min='0' step='1' name='hours' value='" + settings.save_data.hours + "'> :" + 
-            "<input type='number' maxlength='2' min='0' max='59' step='1' name='minutes' value='" + settings.save_data.minutes + "'> :" + 
+            "<input type='number' maxlength='2' min='0' step='1' name='hours' value='" + settings.save_data.hours + "'> : " + 
+            "<input type='number' maxlength='2' min='0' max='59' step='1' name='minutes' value='" + settings.save_data.minutes + "'> : " + 
             "<input type='number' maxlength='2' min='0' max='59' step='1' name='seconds' value='" + settings.save_data.seconds + "'>" + 
 
             "<h2>Clock Display</h2>" + 

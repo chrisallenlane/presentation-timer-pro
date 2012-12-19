@@ -7,10 +7,26 @@ http://twitter.com/#!/chrisallenlane
 
 About
 -----
-Presentation Timer Pro is a presentation timer written using PhoneGap. It provides configurable color cues at different points in your presentation to help you stay on-pace.
+Presentation Timer Pro is a presentation timer written using [PhoneGap][]. It provides configurable color cues at different points in your presentation to help you stay on-pace. 
+
+Presentation Timer Pro supports presentations up to 100 hours in length. Checkpoints may be specified at arbitrary times throughout your presentation to help you to mark time. At each checkpoint, the timer may be changed to an arbitrary color of your choosing. Additionally, the application can be configured to beep and/or vibrate (optionally) at each checkpoint to provide auditory and tactile feedback as time passes.
+
+Installing
+----------
+If you simply want to install the app to your Android device, [it is available for download in the Google Play store][download] for free.
+
+Compiling from Source
+---------------------
+If you're so inclined, you may compile this application from source. To do so, you must first install and configure both the Android SDK and the PhoneGap platform (which can be a rather involved process.) Presuming all of your system is properly configured, you should then be able to compile the application by simply running `./build.sh` from within the project root. The resultant APKs will be stored in the `bin` directory.
+
+Privacy
+-------
+This application does not collect or transmit data of any sort. Installation requires permission to read your device's networking status, but that is due only to a technical requirement of PhoneGap. This application sends no data out over the Internet.
 
 License
 -------
 This work is released under the [Attribution-NonCommercial-ShareAlike 3.0 Unported (CC BY-NC-SA 3.0)][cc] license.
 
-[cc]: http://creativecommons.org/licenses/by-nc-sa/3.0/
+[cc]:         http://creativecommons.org/licenses/by-nc-sa/3.0/
+[download]:   http://play.google.com
+[PhoneGap]:   http://phonegap.com/

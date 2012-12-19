@@ -28,7 +28,7 @@ License
 This work is released under the [Attribution-NonCommercial-ShareAlike 3.0 Unported (CC BY-NC-SA 3.0)][cc] license.
 
 [cc]:               http://creativecommons.org/licenses/by-nc-sa/3.0/
-[download]:         http://play.google.com
+[download]:         https://play.google.com/store/apps/details?id=com.chrisallenlane.presentationtimerpro
 [install-phonegap]: http://phonegap.com/download
 [install-sdk]:      http://developer.android.com/sdk/index.html
 [PhoneGap]:         http://phonegap.com/

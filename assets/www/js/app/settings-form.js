@@ -13,7 +13,7 @@ var settings_form = {
         op_none_sel = op_beep_sel = op_vib_sel = op_both_sel = '';
         
         // map data to local variables, if data is set
-        if(data != null){
+        if(data !== null){
             hours   = data.hours;
             minutes = data.minutes;
             seconds = data.seconds;
@@ -152,7 +152,7 @@ var settings_form = {
             hours   : this.form_values.hours,
             minutes : this.form_values.minutes,
             seconds : this.form_values.seconds,
-        }
+        };
         this.form_values.elapsed = this.hmmss_to_seconds(hmmss);
 
         // iterate over the breakpoint data
@@ -164,14 +164,14 @@ var settings_form = {
             var field  = obj.name.substring(dotpos + 1);
 
             // vivify objects
-            if(breaks[bp_num] == undefined){ breaks[bp_num] = {}; }
+            if(breaks[bp_num] === undefined){ breaks[bp_num] = {}; }
 
             // map values
             breaks[bp_num][field] = obj.value;
         });
         
         // remove empty elements from the breaks array
-        breaks = breaks.filter(function(o){ return (o == null) ? false : true ; });
+        breaks = breaks.filter(function(o){ return (o === null) ? false : true ; });
 
         // now convert each breakpoint's h:mm:ss time to seconds
         $(breaks).each(function(index, obj){
@@ -179,7 +179,7 @@ var settings_form = {
                 hours:   obj.hours,
                 minutes: obj.minutes,
                 seconds: obj.seconds,
-            }
+            };
             breaks[index].elapsed = settings_form.hmmss_to_seconds(hmmss);
         });
 
@@ -215,7 +215,7 @@ var settings_form = {
 
         // draw the initial breakpoint
         var color = settings.save_data.breakpoint_initial_color;
-        var html = " <!-- row --> " +
+        html = " <!-- row --> " +
         "<tr class='breakpoint_initial' data-theme='b'>" + 
             "<td> <input data-theme='a' type='color' name='breakpoint_initial_color' value='" + color + "'> </td>" + 
             "<td> Start </td>" + 
@@ -224,15 +224,15 @@ var settings_form = {
         $('table.settings tr:first').after(html);
 
         // draw the terminal breakpoint
-        var color = settings.save_data.breakpoint_terminal_color;
-        terminal_action = settings.save_data.breakpoint_terminal_action;
+        color            = settings.save_data.breakpoint_terminal_color;
+        terminal_action  = settings.save_data.breakpoint_terminal_action;
         op_none_sel      =  (terminal_action ==  'none')        ? 'selected' : '' ;
         op_beep_sel      =  (terminal_action ==  'beep')        ? 'selected' : '' ;
         op_trip_beep_sel =  (terminal_action ==  'triple-beep') ? 'selected' : '' ;
         op_vib_sel       =  (terminal_action ==  'vibrate')     ? 'selected' : '' ;
         op_both_sel      =  (terminal_action ==  'both')        ? 'selected' : '' ;
 
-        var html = " <!-- row --> " +
+        html = " <!-- row --> " +
         "<tr class='breakpoint_terminal' data-theme='b'>" + 
             "<td> <input data-theme='a' type='color' name='breakpoint_terminal_color' value='" + color + "'> </td>" + 
             "<td> End </td>" + 
@@ -349,7 +349,7 @@ var settings_form = {
                     breakpoints_are_valid = false;
                 }
                 // verify uniqueness
-                if(breakpoint_times[object.elapsed] != null){
+                if(breakpoint_times[object.elapsed] !== null){
                     settings_form.errors.push(
                         "Some of your breakpoints are configured to occur at " +
                         "the same moment. Each breakpoint must be configured to " +
@@ -401,4 +401,4 @@ var settings_form = {
         alert('Settings saved');
         return true;
     },
-}
+};

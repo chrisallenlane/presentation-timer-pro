@@ -5,7 +5,7 @@ var presentation_timer = {
     initialize: function() {
 
         // stop and destroy the timer (if it has been initialized)
-        if(this.interval != null){
+        if(this.interval !== null){
             this.interval.pause();
             this.interval = null;
         }
@@ -49,7 +49,7 @@ var presentation_timer = {
         // if the timer has not yet been started
         if(!this.has_begun){
             // start
-            this.interval   = new Interval(function(){ presentation_timer.tick() }, 1000);
+            this.interval   = new Interval(function(){ presentation_timer.tick(); }, 1000);
             this.has_begun  = true;
             this.is_playing = true;
 
@@ -101,8 +101,8 @@ var presentation_timer = {
         window_height = $(window).height() - 43;
         window_width  = $(window).width();
 
-        body_padding  = Math.floor(parseInt(window_height) * .05);
-        timer_height  = Math.floor(parseInt(window_height) * .9);
+        body_padding  = Math.floor(parseInt(window_height) * 0.05);
+        timer_height  = Math.floor(parseInt(window_height) * 0.9);
         timer_width   = window_width - (2 * body_padding);
         timer_padding = (window_width - timer_width) / 2;
         font_size     = (timer_width > timer_height) ? (timer_width / 4) : (timer_height / 8) ;
@@ -123,8 +123,8 @@ var presentation_timer = {
         // don't display negative time
         var sign = '';
         if(secs < 0){
-            secs    *= -1;
-            var sign = '-';
+            secs *= -1;
+            sign  = '-';
         }
 
         // Thanks for taking some of the thinking out of this:
@@ -144,11 +144,13 @@ var presentation_timer = {
         s = (s < 10) ? '0' + s : s ;
         this.seconds = s;
 
+
         // prettify
+        var time_formatted;
         if(this.hours > 0){
-            var time_formatted = sign + this.hours + ':' + this.minutes + ':' + this.seconds;
+            time_formatted = sign + this.hours + ':' + this.minutes + ':' + this.seconds;
         } else {
-            var time_formatted = sign + this.minutes + ':' + this.seconds;
+            time_formatted = sign + this.minutes + ':' + this.seconds;
         }
 
         // return the formatted time string
@@ -182,7 +184,7 @@ var presentation_timer = {
             presentation_timer.set_color({
                 primary: this.breakpoints[this.next_breakpoint_index].color,
                 secondary: '#000'
-            })
+            });
 
             // beep if appropriate
             if(
@@ -224,7 +226,7 @@ var presentation_timer = {
         $('#timer').css('color'                     , json.primary);
 
         // set the secondary color, if specified
-        if(json.secondary != null){
+        if(json.secondary !== null){
             $('#timer').css('background-color', json.secondary);
         }
     },

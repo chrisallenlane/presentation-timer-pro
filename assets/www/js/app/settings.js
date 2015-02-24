@@ -8,12 +8,12 @@ var settings = {
         version :  1,
         hours   :  0,
         minutes :  10,
-        seconds :  00,
+        seconds :  0,
         elapsed : 600,
         elapsed_remaining : 'elapsed' ,
         breakpoints: [
-            {hours: 0, minutes: 5, seconds: 00, elapsed: 300, color: '#ffff00', action: 'none'},
-            {hours: 0, minutes: 8, seconds: 00, elapsed: 480, color: '#ff0000', action: 'none'},
+            {hours: 0, minutes: 5, seconds: 0, elapsed: 300, color: '#ffff00', action: 'none'},
+            {hours: 0, minutes: 8, seconds: 0, elapsed: 480, color: '#ff0000', action: 'none'},
         ],
         breakpoint_initial_color   : '#00FF00',
         breakpoint_terminal_action : 'triple-beep',
@@ -23,7 +23,7 @@ var settings = {
     // initialize the persistent storage
     init: function(){
         // if a save file exists, load it
-        if(localStorage.presentationtimerpro != null){ this.load(); }
+        if(localStorage.presentationtimerpro !== null){ this.load(); }
         // otherwise, save initialized defaults
         else { this.save(this.save_data); }
     }, 
@@ -40,4 +40,4 @@ var settings = {
     load: function(){
         this.save_data = JSON.parse(localStorage.presentationtimerpro);
     },
-}
+};

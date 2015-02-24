@@ -33,4 +33,4 @@ nav = {
         window.location = '#page-menu';
     }
 
-}
+};

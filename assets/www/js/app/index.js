@@ -41,10 +41,10 @@ var app = {
         document.addEventListener('menubutton', nav.doMenuButton, false);
 
         // resize the timer when the screen is resized
-        $(window).bind('resize', function(){ presentation_timer.draw() });
+        $(window).bind('resize', function(){ presentation_timer.draw(); });
 
         // implement play/pause
-        $('#timer').bind('tap', function(){ presentation_timer.play_pause() });
+        $('#timer').bind('tap', function(){ presentation_timer.play_pause(); });
 
         // bind button events
         $('button#reset_timer').click(function(){
@@ -59,7 +59,7 @@ var app = {
 
         // disallow empty strings on number fields
         $('input[type=number]').change(function(){
-            if($.trim($(this).val()) == ''){
+            if($.trim($(this).val()) === ''){
                 $(this).val(0);
             }
         });

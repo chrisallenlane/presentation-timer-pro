@@ -1,0 +1,37 @@
+{
+  "name": "presentation-timer-pro",
+  "version": "2.0.0",
+  "description": "@TODO",
+  "homepage": "@TODO",
+  "author": {
+    "name": "Chris Allen Lane",
+    "email": "chris@chris-allen-lane.com"
+  },
+  "devDependencies": {
+    "jshint": "2.6.0",
+    "mocha": "2.1.0",
+    "should": "4.4.2"
+  },
+  "jshintConfig": {
+    "expr": true,
+    "laxbreak": true
+  },
+  "scripts": {
+    "lint": "./node_modules/.bin/jshint assets/www/js/app/*.js --exclude=node_modules",
+    "test": "./node_modules/mocha/bin/mocha test/"
+  },
+  "keywords": [
+    "@TODO"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "@TODO"
+  },
+  "bugs": {
+    "url": "@TODO"
+  },
+  "bin" : {
+    "@TODO" : "./index.js"
+  },
+  "main": "index"
+}

@@ -37,7 +37,11 @@ var settings = {
     },
 
     // loads settings_data from persistent storage
-    load: function(){
-        this.save_data = JSON.parse(localStorage.presentationtimerpro);
+    load: function() {
+        try {
+          this.save_data = JSON.parse(localStorage.presentationtimerpro);
+        } catch (e) {
+
+        }
     },
 };

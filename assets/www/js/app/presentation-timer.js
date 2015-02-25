@@ -5,7 +5,7 @@ var presentation_timer = {
     initialize: function() {
 
         // stop and destroy the timer (if it has been initialized)
-        if(this.interval !== null){
+        if(this.interval != null){
             this.interval.pause();
             this.interval = null;
         }
@@ -38,9 +38,9 @@ var presentation_timer = {
 
         // draw the timer initially
         presentation_timer.set_color({
-            primary: settings.save_data.breakpoint_initial_color,
-            secondary: '#000' }
-        );
+            primary   : settings.save_data.breakpoint_initial_color,
+            secondary : '#000'
+        });
         $('#timer').html('Start');
     },
 

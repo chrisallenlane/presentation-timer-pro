@@ -7,96 +7,20 @@
             minimum-scale=1, width=device-width, height=device-height,
             target-densitydpi=device-dpi'>
         <title>Presentation Timer Pro</title>
-        <link rel='stylesheet' href='css/index.css'>
-        <link rel='stylesheet' href='css/jquery.mobile.min.css'>
+        <link rel='stylesheet' href='css/app.css'>
         <script src='js/vendor/jquery-1.8.2.min.js'></script>
-        <script src='js/vendor/jquery.mobile-1.2.0.min.js'></script>
         <script src='js/vendor/jquery.simple-color.min.js'></script>
-        <script src='js/app/interval.js'></script>
-        <script src='js/app/nav.js'></script>
-        <script src='js/app/presentation-timer.js'></script>
-        <script src='js/app/settings.js'></script>
-        <script src='js/app/settings-form.js'></script>
+        <script src='js/app/clock.js'></script>
         <script src='js/app/index.js'></script>
         <script src='cordova-2.1.0.js'></script>
     </head>
 
     <body>
-        <!-- main timer -->
-        <div data-role='page' id='page-timer' data-theme='a'>
-            <div data-role='header'>
-                <h1>&nbsp;</h1>
-                <a href='#page-menu' data-icon='grid' class='ui-btn-right'>Menu</a>
-            </div>
 
-            <div data-role='content'>	
-               <div id='timer_backdrop'>
-                    <p id='timer'>Start</p>
-                </div>
-            </div>
-        </div>
+      <table id='timer'>
+        <tr><td>Start</td></tr>
+      </table>
 
-        <!-- main menu -->
-        <div data-role='page' id='page-menu' data-theme='a'>
-            <div data-role='header'>
-                <a href='#page-timer' data-icon='home'>Home</a>
-                <h1>Menu</h1>
-                <a href='#page-menu' data-icon='grid'>Menu</a>
-            </div>
-
-            <div data-role='content'>	
-                <button id='reset_timer' data-icon='delete'>Reset Timer</button>
-                <a href='#page-settings' data-role='button' data-icon='gear'>Settings</a>
-                <a href='#page-timer' data-role='button' data-icon='back'>Back</a>
-            </div>
-        </div>
-
-        <!-- settings page -->
-        <div data-role='page' id='page-settings' data-theme='a'>
-            <div data-role='header'>
-                <a href='#page-timer' data-icon='home'>Home</a>
-                <h1>Settings</h1>
-                <a href='#page-menu' data-icon='grid'>Menu</a>
-            </div>
-
-            <div data-role='content'>	
-                <form id='app_settings'>
-                    
-                    <div class='settings_main'></div>
-
-                    <h2>Breakpoints</h2>
-                    <!--
-                    Using a table here is semantically less than ideal, but it's
-                    the only reliable way to get vertical-alignment to work.
-                    -->
-                    <table class='settings'>
-                        <!-- header -->
-                        <tr>
-                            <th>Color</th>
-                            <th>Time</th>
-                            <th>Action</th>
-                            <th></th>
-                        </tr>
-
-                        <tr>
-                            <td colspan='4'>
-                                <button id='add_breakpoint' data-theme='a'>Add Breakpoint</button>
-                            </td>
-                        </tr>
-                    </table>
-                </form>
-
-                <div class='ui-grid-a'>
-                    <div class='ui-block-a'><a href='#page-menu' data-role='button' data-icon='back'>Back</a></div>
-                    <div class='ui-block-b'><button id='save_settings' data-icon='check' data-theme='b'>Save</button></div>
-                </div>
-            </div>
-        </div>
-
-        <script type='text/javascript'>
-          $(document).ready(function() {
-            app.initialize();
-          });
-        </script>
+      <script src='js/app/timer.js'></script>
     </body>
 </html>

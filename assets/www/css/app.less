@@ -1,0 +1,114 @@
+/* globals */
+html {
+  background-color : #333;
+  font-family      : sans-serif;
+  height           : 100%;
+}
+
+body {
+  height  : 100%;
+  margin  : 0;
+  padding : 0;
+}
+
+button {
+  border        : none;
+  border-radius : 50px;
+  display       : block;
+  font-size     : xx-large;
+  line-height   : 3;
+  margin        : 2% auto;
+  width         : 95%;
+}
+
+h1 {
+  color       : white;
+  font-size   : xx-large;
+  font-weight : normal;
+}
+
+input[type=number],
+select {
+  background-color : #222;
+  border           : none;
+  color            : white;
+  line-height      : 2;
+  text-align       : center;
+}
+
+section {
+  height : 100%;
+  width  : 100%;
+}
+
+.hidden {
+  display: none;
+}
+
+/* main timer display */
+section#timer {
+  table{
+    background-color : limegreen;
+    height           : 100%;
+    padding          : 5%;
+    width            : 100%;
+
+    tr, td {
+      background-color : black;
+      color            : limegreen;
+      font-size        : 72pt;
+      text-align       : center;
+    }
+  }
+}
+
+/* settings page */
+section#settings {
+  height: auto;
+
+  form {
+    padding: 5%;
+
+    table#presentation-length {
+      margin : 0 auto;
+      width  : 100%;
+
+      input[type=number] {
+        border-radius : 5px;
+        font-size     : x-large;
+        width         : 100%;
+      }
+
+      td {
+        color   : white;
+        padding : 0 1%;
+      }
+    }
+
+    table#breakpoints {
+      width: 100%;
+
+      thead {
+        th {
+          color      : white;
+          padding    : 1% 1%;
+          text-align : center;
+        }
+      }
+
+      tbody {
+        td {
+          color      : white;
+          padding    : 0 1%;
+          text-align : center;
+
+          input[type=number],
+          select {
+            border-radius : 5px;
+            font-size     : large;
+          }
+        }
+      }
+    }
+  }
+}

@@ -6,8 +6,8 @@
   });
 
   // buffer the DOM elements
-  var $timer   = $('#timer');
-  var $display = $('#timer tr td');
+  var $timer   = $('#timer table');
+  var $display = $('#timer table tr td');
 
   // bind the click event
   $timer.click(function() {

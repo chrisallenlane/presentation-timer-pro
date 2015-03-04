@@ -1,98 +1,92 @@
+/* globals */
 html {
-  height: 100%;
-  font-family: sans-serif;
   background-color: #333;
+  font-family: sans-serif;
+  height: 100%;
 }
-
 body {
+  height: 100%;
   margin: 0;
   padding: 0;
-  height: 100%;
 }
-
 button {
-  border-radius: 50px;
   border: none;
+  border-radius: 50px;
   display: block;
   font-size: xx-large;
   line-height: 3;
   margin: 2% auto;
   width: 95%;
 }
-
 h1 {
+  color: white;
   font-size: xx-large;
   font-weight: normal;
+}
+input[type=number],
+select {
+  background-color: #222;
+  border: none;
   color: white;
+  line-height: 2;
+  text-align: center;
 }
-
-.hidden {
-  display: none;
-}
-
 section {
   height: 100%;
   width: 100%;
 }
-
-#settings {
-  height: auto;
+.hidden {
+  display: none;
 }
-
-#timer {
+/* main timer display */
+section#timer table {
   background-color: limegreen;
   height: 100%;
-  width: 100%;
   padding: 5%;
+  width: 100%;
 }
-
-
-#timer tr,
-#timer td {
+section#timer table tr,
+section#timer table td {
   background-color: black;
   color: limegreen;
-  text-align: center;
   font-size: 72pt;
+  text-align: center;
 }
-
-#whatever {
+/* settings page */
+section#settings {
+  height: auto;
+}
+section#settings form {
   padding: 5%;
 }
-
-
-input[type=number] {
-  background-color: #222;
-  border: none;
-  color: white;
-  text-align: center;
-  line-height: 2;
+section#settings form table#presentation-length {
+  margin: 0 auto;
+  width: 100%;
 }
-
-table#presentation-length input[type=number] {
+section#settings form table#presentation-length input[type=number] {
   border-radius: 5px;
   font-size: x-large;
   width: 100%;
 }
-
-table#presentation-length {
-  width: 100%;
-  margin: 0 auto;
-
-}
-
-table#presentation-length td {
-  padding: 0 1%;
+section#settings form table#presentation-length td {
   color: white;
+  padding: 0 1%;
 }
-
-
-table#breakpoints {
+section#settings form table#breakpoints {
   width: 100%;
 }
-
-table#breakpoints td,
-table#breakpoints th {
-  padding: 0 1%;
+section#settings form table#breakpoints thead th {
   color: white;
+  padding: 1% 1%;
   text-align: center;
+}
+section#settings form table#breakpoints tbody td {
+  color: white;
+  padding: 0 1%;
+  text-align: center;
+}
+section#settings form table#breakpoints tbody td input[type=number],
+section#settings form table#breakpoints tbody td select {
+  border-radius: 5px;
+  font-size: large;
 }

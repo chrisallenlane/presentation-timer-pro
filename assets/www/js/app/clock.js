@@ -1,7 +1,11 @@
 var clock = {
-  count     : 0,
-  running   : false,
-  interval  : null,
+  count    : 0,
+  running  : false,
+  interval : null,
+
+  // @todo: count up / count down
+  // @todo: track over time
+  // @todo: emit event when breakpoints are reached
 
   // starts the timer
   start    : function() {
@@ -24,6 +28,7 @@ var clock = {
   tick     : function() {
     clock.count++;
     document.dispatchEvent(new CustomEvent('clock-tick'));
+    // @todo: handle breakpoints
   },
 
   // resets the clock

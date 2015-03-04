@@ -1,13 +1,42 @@
 html {
   height: 100%;
   font-family: sans-serif;
+  background-color: #333;
 }
 
 body {
-  background-color: black;
   margin: 0;
   padding: 0;
   height: 100%;
+}
+
+button {
+  border-radius: 50px;
+  border: none;
+  display: block;
+  font-size: xx-large;
+  line-height: 3;
+  margin: 2% auto;
+  width: 95%;
+}
+
+h1 {
+  font-size: xx-large;
+  font-weight: normal;
+  color: white;
+}
+
+.hidden {
+  display: none;
+}
+
+section {
+  height: 100%;
+  width: 100%;
+}
+
+#settings {
+  height: auto;
 }
 
 #timer {
@@ -17,10 +46,53 @@ body {
   padding: 5%;
 }
 
+
 #timer tr,
 #timer td {
   background-color: black;
   color: limegreen;
   text-align: center;
   font-size: 72pt;
+}
+
+#whatever {
+  padding: 5%;
+}
+
+
+input[type=number] {
+  background-color: #222;
+  border: none;
+  color: white;
+  text-align: center;
+  line-height: 2;
+}
+
+table#presentation-length input[type=number] {
+  border-radius: 5px;
+  font-size: x-large;
+  width: 100%;
+}
+
+table#presentation-length {
+  width: 100%;
+  margin: 0 auto;
+
+}
+
+table#presentation-length td {
+  padding: 0 1%;
+  color: white;
+}
+
+
+table#breakpoints {
+  width: 100%;
+}
+
+table#breakpoints td,
+table#breakpoints th {
+  padding: 0 1%;
+  color: white;
+  text-align: center;
 }

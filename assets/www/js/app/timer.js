@@ -17,9 +17,20 @@
 
   // render the timer
   var render = function() {
-    if (clock.running) {
+
+    // clock has been reset
+    if (clock.count === 0) {
+      $display.html('Start');
+    }
+    
+    // clock is running
+    else if (clock.running) {
+      // @todo: format with moment
       $display.html(clock.count);
-    } else {
+    }
+    
+    // clock is paused
+    else {
       $display.html('Paused');
     }
   };
